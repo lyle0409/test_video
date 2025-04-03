@@ -1,0 +1,99 @@
+<CODE>
+```python
+from manim import *
+from manim_voiceover import VoiceoverScene
+from src.utils.kokoro_voiceover import KokoroService  # Our custom voiceover service
+
+# Helper Functions/Classes
+class Scene3_Helper:  
+    def __init__(self, scene):
+        self.scene = scene
+
+    def create_formula_tex(self, formula_str, color):
+        # Create a MathTex formula with a specified color.
+        return MathTex(formula_str, color=color)
+
+    def label_triangle_sides(self, triangle):
+        # Helper function to label triangle sides.
+        edge_centers = self.get_center_of_edges(triangle)
+        side_labels = VGroup(
+            Tex("a").move_to(edge_centers[0]),
+            Tex("b").move_to(edge_centers[1]),
+            Tex("c").move_to(edge_centers[2]),
+        )
+        return side_labels
+
+    def get_center_of_edges(self, polygon, buff=SMALL_BUFF*3):
+        # Calculate the center points of each edge in a polygon (Triangle, Square, etc.) with an optional buffer.
+        vertices = polygon.get_vertices()
+        n_vertices = len(vertices)
+        coords_vertices = []
+        for i in range(n_vertices):
+            v1 = vertices[i]
+            v2 = vertices[(i + 1) % n_vertices]
+            edge_center = (v1 + v2) / 2
+            edge_vector = v2 - v1
+            edge_length = np.linalg.norm(edge_vector)
+            normal = np.array([-edge_vector[1], edge_vector[0], 0]) / edge_length
+            coords_vertices.append(edge_center + normal * buff)
+        
+        return coords_vertices
+
+
+class Scene3(VoiceoverScene):  
+    def construct(self):
+        # Initialize speech service
+        self.set_speech_service(KokoroService())
+
+        # Instantiate helper class
+        helper = Scene3_Helper(self)
+
+        # --- Stage 1: Scene Setup ---
+        with self.voiceover(text="Now, let's explore an important relationship in triangles, known as the Law of Sines.") as tracker:
+            # Create triangle
+            triangle = Polygon(ORIGIN, 2 * RIGHT, 2 * UP, color=BLUE)
+            self.play(Create(triangle), run_time=2)
+
+            # Create labels for triangle sides
+            side_labels = helper.label_triangle_sides(triangle)
+            self.play(FadeIn(side_labels), run_time=0.5)
+            self.wait(0.5)
+
+        # --- Stage 2: Introducing the Law of Sines ---
+        with self.voiceover(text="Here, we have a triangle. Its sides are labeled as 'a', 'b', and 'c', corresponding to angles 'A', 'B', and 'C' respectively.") as tracker:
+            # Create angle labels
+            angle_labels = VGroup(
+                Tex("A").next_to(triangle.get_vertices()[2], UP, buff=0.3),
+                Tex("B").next_to(triangle.get_vertices()[1], RIGHT, buff=0.3),
+                Tex("C").next_to(triangle.get_vertices()[0], LEFT, buff=0.3),
+            )
+            self.play(FadeIn(angle_labels), run_time=1)
+            self.wait(0.5)
+
+        # --- Stage 3: Presenting the Formula ---
+        with self.voiceover(text="The Law of Sines states that the ratio of a side length to the sine of its opposite angle is constant across all three sides.") as tracker:
+            # Create the Law of Sines formula
+            formula = helper.create_formula_tex(r"\frac{a}{\sin(A)} = \frac{b}{\sin(B)} = \frac{c}{\sin(C)}", WHITE)
+            formula.next_to(triangle, RIGHT, buff=0.5)
+            self.play(Write(formula), run_time=2)
+            self.wait(0.5)
+
+        # --- Stage 4: Connecting Triangle and Formula ---
+        with self.voiceover(text="This means that if we know one side and its opposite angle, we can find the other sides and angles!") as tracker:
+            # Create arrows pointing from triangle sides to formula
+            arrows = VGroup(
+                Arrow(start=triangle.get_vertices()[0], end=formula.get_part_by_tex(r"a").get_center(), color=WHITE),
+                Arrow(start=triangle.get_vertices()[1], end=formula.get_part_by_tex(r"b").get_center(), color=WHITE),
+                Arrow(start=triangle.get_vertices()[2], end=formula.get_part_by_tex(r"c").get_center(), color=WHITE),
+            )
+            self.play(Create(arrows), run_time=2)
+            self.wait(0.5)
+
+        # --- Stage 5: Summary ---
+        with self.voiceover(text="To summarize: 'a' is the side opposite angle 'A', 'b' is opposite angle 'B', and 'c' is opposite angle 'C'.") as tracker:
+            summary_text = Tex("a: side opposite angle A, b: side opposite angle B, c: side opposite angle C").scale(0.7)
+            summary_text.next_to(formula, DOWN, buff=0.5)
+            self.play(FadeIn(summary_text), run_time=1)
+            self.wait(2)  # Wait for viewers to absorb the information
+```
+</CODE>

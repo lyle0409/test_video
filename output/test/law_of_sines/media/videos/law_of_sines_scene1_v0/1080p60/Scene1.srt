@@ -1,0 +1,8 @@
+1
+00:00:00,000 --> 00:00:02,444
+Let's explore triangles and their properties.
+
+2
+00:00:06,500 --> 00:00:09,256
+Triangles have three sides and three angles.
+

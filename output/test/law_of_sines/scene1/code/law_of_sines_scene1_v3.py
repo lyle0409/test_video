@@ -1,0 +1,92 @@
+
+from manim import *
+from manim_voiceover import VoiceoverScene, RecorderService  # Corrected import for RecorderService
+
+# Helper Class for Scene 6
+class Scene6_Helper:
+    def __init__(self, scene):
+        self.scene = scene
+
+    def create_triangle(self):
+        # Create a right-angled triangle with sides a = 5, b = 7, and unknown side c.
+        triangle = Polygon(
+            [0, 0, 0], [5, 0, 0], [0, 7, 0], color=BLUE
+        ).move_to(ORIGIN)
+        return triangle
+
+    def label_triangle_sides_and_angles(self, triangle):
+        # Label sides a, b, c and known angle A.
+        a_label = MathTex("a = 5").set_color(WHITE).scale(0.75).next_to(triangle, UP, buff=0.3)
+        b_label = MathTex("b = 7").set_color(WHITE).scale(0.75).next_to(triangle, RIGHT, buff=0.3)
+        c_label = MathTex("c").set_color(WHITE).scale(0.75).next_to(triangle, DOWN, buff=0.5)
+        A_label = MathTex("A = 30^{\\circ}").set_color(WHITE).scale(0.75).next_to(triangle, LEFT, buff=0.3)
+        return VGroup(a_label, b_label, c_label, A_label)
+
+    def create_law_of_sines_formula(self):
+        # Create the Law of Sines formula.
+        formula = MathTex(r"\frac{a}{\sin(A)} = \frac{b}{\sin(B)}").scale(0.75)
+        return formula
+
+    def create_calculations(self):
+        # Create the step-by-step calculations.
+        B_calculation = MathTex(r"\sin(B) = \frac{b \cdot \sin(A)}{a}").scale(0.75)
+        C_calculation = MathTex(r"c = \frac{a \cdot \sin(C)}{\sin(A)}").scale(0.75)
+        c_calculated = MathTex("c \\approx 8.24").set_color(WHITE).scale(0.75)
+        return B_calculation, C_calculation, c_calculated
+
+# Scene 6: Example Problem 2
+class Scene6(VoiceoverScene):
+    def construct(self):
+        # Initialize speech service with RecorderService
+        self.set_speech_service(RecorderService())  # Corrected to RecorderService for voiceover narration
+
+        # Instantiate helper class
+        helper = Scene6_Helper(self)
+
+        # Create triangle and labels
+        triangle = helper.create_triangle()
+        labels = helper.label_triangle_sides_and_angles(triangle)
+
+        # Create the Law of Sines formula and calculations
+        formula = helper.create_law_of_sines_formula()
+        B_calculation, C_calculation, c_calculated = helper.create_calculations()
+
+        # Positioning the formula and calculations
+        formula.next_to(triangle, RIGHT, buff=0.5)
+        B_calculation.next_to(formula, DOWN, buff=0.3)
+        C_calculation.next_to(B_calculation, DOWN, buff=0.3)
+        c_calculated.next_to(C_calculation, DOWN, buff=0.5)
+
+        # --- Stage 1: Introduce the Triangle ---
+        with self.voiceover(text="Here is a right-angled triangle with sides a equals 5 and b equals 7, and angle A equals 30 degrees.") as tracker:
+            self.play(Create(triangle), run_time=2)
+            self.play(Write(labels), run_time=tracker.duration)
+            self.wait(1)  # Transition buffer
+
+        # --- Stage 2: Introduce the Law of Sines ---
+        with self.voiceover(text="We will apply the Law of Sines to solve for the missing angle B and the side c.") as tracker:
+            self.play(Write(formula), run_time=tracker.duration)
+            self.wait(1)
+
+        # --- Stage 3: Solve for Angle B ---
+        with self.voiceover(text="First, we calculate the sine of angle B using the formula sine of B equals b times sine of A divided by a.") as tracker:
+            self.play(Write(B_calculation), run_time=tracker.duration)
+            self.wait(1)
+        
+        with self.voiceover(text="After solving, we find that angle B is approximately 45 degrees.") as tracker:
+            B_label = MathTex("B \\approx 45^{\\circ}").set_color(WHITE).scale(0.75).next_to(triangle, DOWN, buff=0.5)
+            self.play(Write(B_label), run_time=tracker.duration)
+            self.wait(1)
+
+        # --- Stage 4: Solve for Side c ---
+        with self.voiceover(text="Next, we calculate the missing side c using the formula c equals a times sine of C divided by sine of A.") as tracker:
+            self.play(Write(C_calculation), run_time=tracker.duration)
+            self.wait(1)
+
+        with self.voiceover(text="After solving, we find that side c is approximately 8.24.") as tracker:
+            self.play(Write(c_calculated), run_time=tracker.duration)
+            self.wait(1)
+
+        # --- Final View ---
+        with self.voiceover(text="This demonstrates how the Law of Sines can be used to solve for missing angles and sides in a triangle.") as tracker:
+            self.wait(1)  # Final pause before ending the scene

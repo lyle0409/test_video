@@ -1,0 +1,150 @@
+# Scene 5 Implementation Plan
+
+<SCENE_VISION_STORYBOARD_PLAN>
+[SCENE_VISION]
+1.  **Scene Overview**:
+    - This scene will present a specific example of applying the Law of Sines, illustrating the relationship between the sides and angles of a triangle. The key takeaway is to demonstrate how to find an unknown angle using known values, reinforcing understanding through a practical application.
+    - **Visual learning objectives for viewers:** Use `Polygon` to create a triangle and `MathTex` for mathematical notation. The triangle will depict known angles A and B, as well as side a. The calculations will be presented using `MathTex` objects clearly labeled next to the triangle.
+    - Manim visuals & animations support learning by providing a clear visual representation of the triangle and its elements, combined with step-by-step calculations. Spacing will adhere to the minimum 0.3 units between elements and the safe area margins of 0.5 units all around. Use `VGroup` to group related formula components for easier animation and spatial control.
+    - Key concepts to emphasize visually include the Law of Sines formula and the relationship between angles and sides. Use `MathTex` for the formula and `Tex` for any necessary labels, ensuring clarity and focus on the mathematical concepts.
+
+[STORYBOARD]
+1.  **Visual Flow & Pacing (Manim Animation Sequence)**:
+    - Start with the triangle creation. Visual Element: A right triangle created using `Polygon`. Position this triangle at the center of the scene with vertices labeled as A, B, and C. The lengths of sides a, b, and c will be represented as well.
+        - **Animation Sequence**: 
+            - Create the triangle with `Create(triangle, run_time=2)`.
+            - Label angles A and B using `MathTex` positioned appropriately next to the triangle vertices.
+            - Use `Write(angle_A_label, run_time=1)` and `Write(angle_B_label, run_time=1)` for the labels.
+    - Next, display the known values. Visual Element: Display the values of angles A and B, and side a, next to the triangle.
+        - **Animation Sequence**:
+            - Introduce the values using `MathTex`, e.g., `MathTex(r"A = 30^\circ", r"B = 45^\circ", r"a = 10")`. Position these next to the triangle with a minimum spacing of 0.3 units.
+            - Use `Write(known_values, run_time=1)` to show the values.
+    - Transition to the calculation of angle C using the Law of Sines formula. Visual Element: Introduce the formula using `MathTex`.
+        - **Animation Sequence**:
+            - Create the Law of Sines formula with `MathTex(r"\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}").next_to(triangle, RIGHT, buff=0.3)`.
+            - Use `Write(formula, run_time=1)` to display the Law of Sines.
+    - Proceed to calculate angle C step-by-step. Visual Element: Show the rearrangement of the Law of Sines to isolate C.
+        - **Animation Sequence**:
+            - Use `MathTex(r"\sin C = \frac{c \cdot \sin A}{a}").next_to(formula, DOWN, buff=0.3)`.
+            - Use `Write(sin_C_formula, run_time=1)` to reveal the rearranged formula.
+    - Finally, display the calculation of angle C using known values. Visual Element: Show the substitution of known values into the formula.
+        - **Animation Sequence**:
+            - Introduce the substitution with `MathTex(r"C = \arcsin\left(\frac{10 \cdot \sin(30^\circ)}{10}\right)").next_to(sin_C_formula, DOWN, buff=0.3)`.
+            - Use `Write(angle_C_calculation, run_time=1)` to show the calculation of angle C.
+    - Ensure to include `Wait(2)` after each visual transition to allow viewers to absorb the information before moving forward.
+
+</SCENE_VISION_STORYBOARD_PLAN>
+
+<SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+0. **Dependencies**:
+    - **Manim API Version**: Target the latest stable Manim release (as of October 2023).
+    - **Allowed Imports**: `from manim import *`, ensuring all elements are drawn strictly according to the Manim documentation. No external assets are used.
+
+1. **Manim Object Selection & Configuration (Text and Shapes)**:
+    - **Triangle**: 
+        - `triangle = Polygon(ORIGIN + LEFT, ORIGIN + RIGHT, ORIGIN + UP, color=WHITE)`
+        - Vertices labeled as A, B, and C.
+    - **Labels for angles**:
+        - `angle_A_label = MathTex("A", font_size=24).next_to(triangle.get_vertices()[2], UP, buff=0.3)`
+        - `angle_B_label = MathTex("B", font_size=24).next_to(triangle.get_vertices()[1], LEFT, buff=0.3)`
+        - `angle_C_label = MathTex("C", font_size=24).next_to(triangle.get_vertices()[0], DOWN, buff=0.3)`
+    - **Known values**:
+        - `known_values = MathTex(r"A = 30^\circ, B = 45^\circ, a = 10", font_size=24).next_to(triangle, RIGHT, buff=0.3)`
+    - **Law of Sines formula**:
+        - `law_of_sines = MathTex(r"\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}", font_size=24).next_to(triangle, RIGHT, buff=0.3)`
+    - **Calculating angle C**:
+        - `sin_C_formula = MathTex(r"\sin C = \frac{c \cdot \sin A}{a}", font_size=24).next_to(law_of_sines, DOWN, buff=0.3)`
+        - `angle_C_calculation = MathTex(r"C = \arcsin\left(\frac{10 \cdot \sin(30^\circ)}{10}\right)", font_size=24).next_to(sin_C_formula, DOWN, buff=0.3)`
+    - **Text Considerations**: No additional LaTeX packages are needed. All text uses the default Manim font.
+
+2. **VGroup Structure & Hierarchy**:
+    - `triangle_group = VGroup(triangle, angle_A_label, angle_B_label, angle_C_label)`
+    - `value_group = VGroup(known_values, law_of_sines, sin_C_formula, angle_C_calculation)`
+    - Grouping is done to manage animations easily and keep elements aligned.
+
+3. **Spatial Positioning Strategy**:
+    - **Triangle positioning**: Centered at ORIGIN.
+    - **Angle labels**: Positioned relative to the triangle's vertices with a minimum buff of 0.3 units.
+    - **Known values**: Placed to the right of the triangle with a 0.3 unit buffer.
+    - **Law of Sines formula**: Positioned to the right of triangle with a buffer of 0.3 units.
+    - **Sin C formula**: Placed below the Law of Sines formula with a buffer of 0.3 units.
+    - **Angle C calculation**: Positioned below the Sin C formula with a buffer of 0.3 units.
+    - All objects are ensured to remain within the 0.5 unit safe margins.
+
+4. **Animation Methods & Object Lifecycle Management**:
+    - Animation Sequence:
+        1. `self.play(Create(triangle_group), run_time=2)`, `Wait(1)`
+        2. `self.play(Write(angle_A_label, run_time=1), Write(angle_B_label, run_time=1), Write(angle_C_label, run_time=1))`, `Wait(1)`
+        3. `self.play(Write(known_values, run_time=1))`, `Wait(1)`
+        4. `self.play(Write(law_of_sines, run_time=1))`, `Wait(1)`
+        5. `self.play(Write(sin_C_formula, run_time=1))`, `Wait(1)`
+        6. `self.play(Write(angle_C_calculation, run_time=1))`, `Wait(2)`
+
+5. **Code Structure & Reusability**:
+    - Functions are created for each significant component:
+        - `def create_triangle()`
+        - `def create_labels()`
+        - `def create_known_values()`
+        - `def create_formulas()`
+    - Each function encapsulates the creation logic for reusability and clarity.
+    - Inline comments document the rationale behind positioning and animation choices.
+
+***Mandatory Safety Checks***:
+    - **Safe Area Enforcement**: All objects are positioned within the 0.5 unit margins.
+    - **Minimum Spacing Validation**: Guaranteed 0.3 units spacing between every pair of objects.
+    - **Transition Buffers**: Explicit `Wait()` calls are used to separate animation steps for clarity.
+</SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+
+<SCENE_ANIMATION_NARRATION_PLAN>
+
+[ANIMATION_STRATEGY]
+1. **Pedagogical Animation Plan:** 
+    - **Parent VGroup transitions:**
+        - The `triangle_group` will be created first, using the `Create` animation to visually emphasize the triangle's structure and its components. This helps viewers focus on the triangle as the central figure of the problem.
+        - After the triangle is revealed, the `value_group` will be introduced using the `FadeIn` animation to transition smoothly into the known values. This transition highlights the importance of these values in the subsequent calculations.
+        - The pedagogical rationale is to create a clear visual hierarchy, guiding the viewer's attention from the triangle to the known values and then to the formulas, supporting a logical flow of information.
+
+    - **Element animations within VGroups and for individual Mobjects:**
+        - The triangle is created with `Create(triangle_group, run_time=2)`, establishing the main subject of this scene.
+        - The angles are labeled using `Write(angle_A_label, run_time=1)` and `Write(angle_B_label, run_time=1)` sequentially, reinforcing the identities of the angles as we discuss them.
+        - The known values are introduced with `Write(known_values, run_time=1)`, which allows viewers to see how these values relate to the triangle.
+        - The Law of Sines formula is displayed with `Write(law_of_sines, run_time=1)`, emphasizing its significance in the context of the problem.
+        - The rearrangement to isolate `C` is shown with `Write(sin_C_formula, run_time=1)`, breaking down the steps for clarity.
+        - Finally, the calculation of angle `C` is introduced with `Write(angle_C_calculation, run_time=1)`, culminating the step-by-step process.
+        - Each animation serves to build understanding incrementally, as viewers can see how each part of the equation relates directly to the triangle and the known values.
+
+    - **Coordinate element animations with VGroup transitions:**
+        - The animations are carefully timed. For example, after the triangle is created and labeled, there is a `Wait(1)` to give viewers time to absorb the information before moving onto the known values.
+        - This timing continues throughout the scene, with pauses after significant elements to ensure comprehension and retention, guiding the viewer's eye and attention logically through the learning material.
+
+2. **Scene Flow - Pedagogical Pacing and Clarity:**
+    - **Overall animation sequence, spatial progression for learning:**
+        - The scene begins with "Introducing the Triangle", where the triangle is created, and angles are labeled. This sets the stage for the problem.
+        - Next, "Presenting Known Values" shows the known values adjacent to the triangle, reinforcing their relevance.
+        - "Applying the Law of Sines" introduces the formula next to the triangle, leading into the calculation of angle `C`.
+        - Throughout, the visuals progress logically from the triangle to the values and then to the formulas, ensuring clarity and focus on the mathematical relationships.
+    
+    - **Transition buffers for pedagogical pauses:**
+        - After the triangle creation, a `Wait(1)` allows time for understanding its structure. Similar pauses follow the introduction of known values and each formula, allowing viewers to process the information before the next step.
+        - Each buffer is designed to give learners time to reflect on what has been presented, enhancing understanding and retention.
+
+    - **Coordinate animation timing with narration for engagement and comprehension:**
+        - The narration is synchronized with the animations, with specific cues aligned with the appearance of each element. For example, when the triangle is created, the narration will introduce it as the central figure, ensuring that viewers understand its importance.
+        - The narration will also guide viewers through each step of the calculation, highlighting the significance of each formula as it appears, creating a cohesive audiovisual presentation that maximizes learning.
+
+[NARRATION]
+- **Pedagogical Narration Script:**
+    - "Now, let's explore an example problem using the Law of Sines. (Create triangle) Here, we have a triangle with angles A and B, and side a. (Write angles) We know that angle A is 30 degrees, angle B is 45 degrees, and side a measures 10 units. (Write known values) 
+    - To find angle C, we can apply the Law of Sines. (Write Law of Sines formula) The Law of Sines states that the ratio of a side to the sine of its opposite angle is constant across all three sides of the triangle.
+    - Let's rearrange the formula to solve for angle C. (Write rearranged formula) We can isolate sine C by using the known values we have. We know side a and angle A, so we can express sine C as follows: sin C equals the sine of angle A multiplied by the length of side a divided by the length of side c. (Wait for understanding)
+    - Now, substituting the known values into this formula, we get C equals arcsin of the sine of 30 degrees times 10 divided by 10. (Write angle C calculation) 
+    - Let's calculate angle C. (Wait for processing) When we evaluate this expression, we find that angle C measures approximately 105 degrees. 
+    - Thus, through the Law of Sines, we can systematically find the unknown angles in any triangle, reinforcing our understanding of this important trigonometric rule. (Summarize and transition to next scene)"
+
+- **Narration Sync - Pedagogical Alignment:**
+    - The narration is strategically aligned with the animations, ensuring that the viewer's attention is directed to the relevant parts of the visual when they are being discussed. 
+    - For instance, as the triangle is created, the narration introduces it, reinforcing its importance. Similar coordination occurs with the known values and formulas, ensuring that the viewer is engaged with the material at the right moments.
+    - This synchronization creates a seamless and effective learning experience, helping to drive home the key concepts of the Law of Sines through a combination of visual and auditory learning strategies.
+
+</SCENE_ANIMATION_NARRATION_PLAN>
+

@@ -1,0 +1,73 @@
+<SCENE_ANIMATION_NARRATION_PLAN>
+
+[ANIMATION_STRATEGY]
+1. **Pedagogical Animation Plan:** 
+    - **Parent VGroup transitions:**
+        - No VGroup transitions are necessary for this scene as the elements will be displayed one after another without the need for collective movement.
+    
+    - **Element animations:**
+        - **Triangles Creation:**
+            - **Animation Type:** `Create`
+            - **Target Object:** `triangle_group`
+            - **Run Time:** 2 seconds
+            - **Pedagogical Purpose:** The simultaneous creation of both triangles emphasizes their similarity and sets the stage for understanding the Law of Sines. It visually reinforces the idea that these two triangles are related in a fundamental way.
+
+        - **Dashed Line Creation:**
+            - **Animation Type:** `Create`
+            - **Target Object:** `dashed_line`
+            - **Run Time:** 1 second
+            - **Pedagogical Purpose:** The introduction of the dashed line serves as a visual aid to highlight the height dropped from the vertex of the triangle. This geometric depiction is crucial for understanding the relationship between the sides and the angles of the triangles.
+
+        - **Angle Labels Display:**
+            - **Animation Type:** `Write`
+            - **Target Object:** `angle_A`
+            - **Run Time:** 1 second
+            - **Pedagogical Purpose:** Displaying the angle labels immediately following the triangles' creation helps viewers to associate the angles with their respective triangles, solidifying the visual connection.
+
+            - **Animation Type:** `Write`
+            - **Target Object:** `angle_B`
+            - **Run Time:** 1 second
+            - **Pedagogical Purpose:** Similar to `angle_A`, this reinforces the importance of angles in the triangles and prepares the viewer for the next step in deriving the Law of Sines.
+
+        - **Law of Sines Display:**
+            - **Animation Type:** `Write`
+            - **Target Object:** `law_group`
+            - **Run Time:** 1.5 seconds
+            - **Pedagogical Purpose:** Presenting the Law of Sines at this point provides a clear culmination of the visual representations. It connects the previously displayed elements and reinforces the relationships established through the triangles and their angles.
+
+    - **Coordinate element animations:**
+        - The triangles will be created first, followed by the dashed line, then the angle labels, and finally the Law of Sines expression. This sequential approach allows for a clear understanding of how each element builds upon the last, promoting a logical flow of information.
+
+2. **Scene Flow - Pedagogical Pacing and Clarity:**
+    - **Overall animation sequence:**
+        - The scene will begin with the introduction of the two triangles side by side. This visual establishes the context for deriving the Law of Sines. 
+        - Following the triangles' creation, the dashed line will be added, emphasizing the height of the triangle and aiding in the understanding of the relationship between the sides and angles.
+        - Next, the angles will be labeled to clarify which angle corresponds to which triangle, reinforcing spatial understanding.
+        - Finally, the Law of Sines will be presented, summarizing the relationships illustrated by the triangles and marking the conclusion of the derivation process.
+    
+    - **Transition buffers for pedagogical pauses:**
+        - **Wait(1)** after creating the triangles: This allows viewers a moment to absorb the visual representation before moving on.
+        - **Wait(1)** after the dashed line is created: This pause gives viewers time to understand the significance of the height in the context of the triangles.
+        - **Wait(1)** after the angle labels: This ensures viewers can associate the angles with the triangles before introducing the Law of Sines.
+        - **Wait(1)** after displaying the Law of Sines: This serves as a final moment for viewers to process the entire derivation.
+
+    - **Coordinate animation timing with narration:**
+        - The animations will be tightly synchronized with the narration, ensuring that as each element is introduced, the corresponding explanation is provided. For example, the angles will be labeled just as the viewer hears about their significance, reinforcing the connection between visuals and verbal explanations.
+
+[NARRATION]
+- **Pedagogical Narration Script:**
+    - "Now, let's explore how we can derive the Law of Sines from the properties of similar triangles." **(Start creating triangles)**
+    - "Here we have two right-angled triangles, Triangle A and Triangle B, which share a common angle, denoted as \( \angle A \). Notice how these triangles are positioned side by side." **(Wait 1 second)**
+    - "Next, let’s drop a height from the top vertex of Triangle A to its base, creating a dashed line. This line represents the height of Triangle A." **(Create dashed line, Wait 1 second)**
+    - "The height helps us understand the relationship between the angle \( \angle A \) and the side opposite to it." **(Wait 1 second)**
+    - "Now, let's label our angles. Here, we have \( \angle A \) in Triangle A and \( \angle B \) in Triangle B." **(Write angle labels, Wait 1 second)**
+    - "These angles are crucial because they relate directly to the lengths of the sides opposite them." **(Wait 1 second)**
+    - "Finally, we can express this relationship mathematically with the Law of Sines: \( \frac{a}{\sin A} = \frac{b}{\sin B} \)." **(Write Law of Sines, Wait 1 second)**
+    - "This formula tells us that the ratio of a side length to the sine of its opposite angle is constant across any triangle." **(Wait 1 second)**
+
+- **Narration Sync - Pedagogical Alignment:**
+    - The narration is aligned with the animation cues. For instance, as the triangles are created, the narration introduces them, ensuring that viewers focus on the visual and auditory elements simultaneously. 
+    - Each wait period after an animation allows viewers to process what they just saw before transitioning to the next point, reinforcing understanding. 
+    - The combination of visual elements and narration will create a cohesive learning experience, enhancing comprehension of the Law of Sines and its derivation from similar triangles.
+
+</SCENE_ANIMATION_NARRATION_PLAN>

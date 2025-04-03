@@ -1,0 +1,40 @@
+1
+00:00:00,000 --> 00:00:02,934
+Now, let's explore an important relationship in
+
+2
+00:00:03,034 --> 00:00:05,324
+triangles, known as the Law of Sines.
+
+3
+00:00:05,416 --> 00:00:08,914
+Here, we have a triangle. Its sides are labeled as 'a',
+
+4
+00:00:09,014 --> 00:00:13,428
+'b', and 'c', corresponding to angles 'A', 'B', and 'C' respectively.
+
+5
+00:00:13,516 --> 00:00:17,042
+The Law of Sines states that the ratio of a side length to
+
+6
+00:00:17,142 --> 00:00:21,168
+the sine of its opposite angle is constant across all three sides.
+
+7
+00:00:21,266 --> 00:00:23,672
+This means that if we know one side and its
+
+8
+00:00:23,772 --> 00:00:26,878
+opposite angle, we can find the other sides and angles!
+
+9
+00:00:26,966 --> 00:00:30,346
+To summarize: 'a' is the side opposite angle 'A', 'b'
+
+10
+00:00:30,446 --> 00:00:33,826
+is opposite angle 'B', and 'c' is opposite angle 'C'.
+

@@ -1,0 +1,182 @@
+# Scene 3 Implementation Plan
+
+<SCENE_VISION_STORYBOARD_PLAN>
+[SCENE_VISION]
+1.  **Scene Overview**:
+    - This scene introduces the Law of Sines, outlining its formula and explaining the relationship between the sides and angles of a triangle. It serves as a foundational concept for understanding trigonometry within triangles, which will be elaborated upon in subsequent scenes.
+    - **Visual learning objectives for viewers:** Use a `Polygon` object for the triangle to visualize the sides and angles. Display the Law of Sines using `MathTex` for clear mathematical notation. The formula will be represented as `MathTex(r"\frac{a}{\sin(A)} = \frac{b}{\sin(B)} = \frac{c}{\sin(C)}")`.
+    - Manim visuals support learning by explicitly demonstrating the relationship between the triangle's sides and angles through the Law of Sines formula. The triangle will visually connect to the corresponding parts of the formula using arrows, enhancing comprehension. A `VGroup` will be used to group the formula components for smoother animations and layout.
+    - Key concepts to emphasize include the definitions of sides (a, b, c) and angles (A, B, C) using labels positioned near the triangle and formula, ensuring clarity and adherence to spacing requirements.
+
+[STORYBOARD]
+1.  **Visual Flow & Pacing (Manim Animation Sequence)**:
+    - Start with the triangle (`Polygon`) appearing on the left side of the screen. Use `Create` animation for the triangle with a `run_time` of 2 seconds.
+    - Animate the labeling of the sides and angles: 
+        - **Visual Element:** The triangle will have labels. Use `Tex` to create labels for each side (a, b, c) and each angle (A, B, C). Position the labels using `.next_to()` relative to the respective sides and angles of the triangle.
+        - **Animation Sequence:** Use `FadeIn` for each label with a `run_time` of 0.5 seconds for each label, ensuring they appear sequentially with `Wait(0.5)` between each label.
+    - After labeling, transition to the formula on the right side:
+        - **Visual Element:** Use `MathTex` to display the Law of Sines formula. Position it on the right side of the screen using `.next_to()` the triangle while ensuring a minimum spacing of 0.3 units.
+        - **Animation Sequence:** Use `Write` animation for the formula with a `run_time` of 2 seconds.
+    - Connect the triangle to the formula visually:
+        - Draw arrows from each side to the corresponding part of the formula. Use `Arrow` objects with a `stroke_width` of 2 to create arrows that point from sides to their corresponding sine components. Position the arrows ensuring a minimum spacing of 0.3 units from the triangle and the formula.
+        - **Animation Sequence:** Use `Create` for each arrow with a `run_time` of 1 second, animating them in sequence with `Wait(0.5)` between each arrow.
+    - Conclude the scene with a summary:
+        - **Visual Element:** Use `Tex` to briefly state what each variable represents (e.g., “a: side opposite angle A”). Position this text centered below the triangle and formula, ensuring it's within safe margins.
+        - **Animation Sequence:** Use `FadeIn` for this text with a `run_time` of 1 second.
+    - Allow a `Wait(2)` before transitioning to the next scene to give viewers time to absorb the information.
+
+</SCENE_VISION_STORYBOARD_PLAN>
+
+<SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+0. **Dependencies**:
+    - **Manim API Version**: Target the latest stable Manim release, using only documented API elements.
+    - **Allowed Imports**: `from manim import *` for all essential Manim objects.
+
+1. **Manim Object Selection & Configuration (Text and Shapes)**:
+    - **Triangle**: 
+        - Object: `Polygon`
+        - Parameters: Vertices defined for a right triangle, e.g., `Polygon(ORIGIN, 2 * RIGHT, 2 * UP)`.
+        - Color: `BLUE`
+    - **Labels for Triangle**:
+        - Sides: 
+            - `Tex("a")` for side opposite angle A.
+            - `Tex("b")` for side opposite angle B.
+            - `Tex("c")` for side opposite angle C.
+        - Angles:
+            - `Tex("A")` for angle A.
+            - `Tex("B")` for angle B.
+            - `Tex("C")` for angle C.
+    - **Formula**:
+        - Object: `MathTex`
+        - Content: `r"\frac{a}{\sin(A)} = \frac{b}{\sin(B)} = \frac{c}{\sin(C)}"`
+        - Size: Font size set to 24.
+    - **Arrows**: 
+        - Object: `Arrow`
+        - Parameters: Stroke width of 2.
+    - **Summary Text**: 
+        - Object: `Tex`
+        - Content: “a: side opposite angle A, b: side opposite angle B, c: side opposite angle C”.
+        - Size: Font size set to 20.
+    
+    **Text Considerations**:
+    - All objects begin within the safe area (0.5 units).
+    - Ensure at least 0.3 units spacing to avoid overlaps.
+
+2. **VGroup Structure & Hierarchy**:
+    - **triangle_group**: 
+        - Contains: `Polygon`, side labels (a, b, c), and angle labels (A, B, C).
+    - **formula_group**: 
+        - Contains: `MathTex` for the Law of Sines formula.
+    - **arrows_group**: 
+        - Contains: Arrows connecting triangle sides to corresponding formula components.
+    - **summary_group**: 
+        - Contains: Summary text.
+
+3. **Spatial Positioning Strategy**:
+    - **Triangle Positioning**:
+        - `triangle.move_to(LEFT * 3 + UP)` ensuring a buffer of 0.5 units from the left edge.
+    - **Label Positioning**:
+        - `a_label.next_to(triangle, DOWN, buff=0.3)`.
+        - `b_label.next_to(triangle, RIGHT, buff=0.3)`.
+        - `c_label.next_to(triangle, RIGHT, DOWN, buff=0.3)`.
+        - `A_label.next_to(triangle, UP, buff=0.3)`.
+        - `B_label.next_to(triangle, RIGHT + UP, buff=0.3)`.
+        - `C_label.next_to(triangle, LEFT + UP, buff=0.3)`.
+    - **Formula Positioning**:
+        - `formula_group.next_to(triangle_group, RIGHT, buff=0.3)`.
+    - **Arrow Positioning**:
+        - Arrows will be positioned to point from the triangle sides to the corresponding sine components in the formula with a buffer of 0.3 units.
+    - **Summary Text Positioning**:
+        - `summary_text.next_to(triangle_group, DOWN, buff=0.5)` ensuring it is centered below the triangle and formula.
+
+4. **Animation Methods & Object Lifecycle Management**:
+    - **Triangle Animation**: 
+        - `self.play(Create(triangle_group), run_time=2)`.
+    - **Labels Animation**: 
+        - Sequentially use `FadeIn` for each label with a `run_time` of 0.5 seconds and `Wait(0.5)` between each.
+    - **Formula Animation**:
+        - `self.play(Write(formula_group), run_time=2)`.
+    - **Arrow Animation**:
+        - Sequentially use `Create` for each arrow with a `run_time` of 1 second and `Wait(0.5)` between each arrow.
+    - **Summary Animation**:
+        - `self.play(FadeIn(summary_group), run_time=1)`.
+    - **Final Wait**: 
+        - `self.wait(2)` to allow viewers time to absorb the information.
+
+5. **Code Structure & Reusability**:
+    - Modular functions can be created for generating the triangle, labels, formula, and arrows to promote code reusability.
+    - Organize the overall code structure into sections: dependencies, object definitions, layout stages, and the main `construct` method.
+    - Inline comments will document configuration choices and reference the Manim Documentation for clarity.
+
+***Mandatory Safety Checks***:
+    - **Safe Area Enforcement**: All objects must remain within 0.5 unit margins.
+    - **Minimum Spacing Validation**: Confirm a minimum of 0.3 units spacing between every pair of objects.
+    - **Transition Buffers**: Use explicit `Wait()` calls to separate animation steps and sub-scenes.
+</SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+
+<SCENE_ANIMATION_NARRATION_PLAN>
+
+[ANIMATION_STRATEGY]
+1. **Pedagogical Animation Plan:**
+    - **Parent VGroup transitions:**
+        - **triangle_group**: This VGroup will contain the triangle and its labels, allowing for a unified movement as we introduce the Law of Sines. 
+            - Transition: `self.play(Create(triangle_group), run_time=2)`.
+            - **Rationale**: This transition introduces the triangle as a whole, making it easier for viewers to understand that all elements are interconnected.
+        - **formula_group**: This VGroup will hold the Law of Sines formula.
+            - Transition: `self.play(Write(formula_group), run_time=2)`.
+            - **Rationale**: The formula appears distinctly after the triangle is established, emphasizing its relevance to the triangle.
+
+    - **Element animations within VGroups and for individual Mobjects:**
+        - **Triangle Creation**: 
+            - Animation: `Create(triangle)`, `run_time=2`.
+            - **Purpose**: This introduces the triangle visually, allowing viewers to focus on its shape and structure before adding complexity with labels.
+        - **Labeling the Triangle**: 
+            - Animation Sequence: `self.play(FadeIn(a_label), Wait(0.5), FadeIn(b_label), Wait(0.5), FadeIn(c_label), Wait(0.5), FadeIn(A_label), Wait(0.5), FadeIn(B_label), Wait(0.5), FadeIn(C_label))`.
+            - **Purpose**: Sequentially adding labels helps viewers digest each component of the triangle, reinforcing the connection between the triangle’s geometry and the Law of Sines.
+        - **Formula Appearance**: 
+            - Animation: `Write(formula_group), run_time=2`.
+            - **Purpose**: This draws attention to the mathematical relationship we are about to elaborate on, linking it directly to the triangle already established.
+        - **Drawing Arrows**: 
+            - Animation Sequence: `self.play(Create(arrow_a), Wait(0.5), Create(arrow_b), Wait(0.5), Create(arrow_c))`.
+            - **Purpose**: The arrows visually link the triangle's sides to the formula, facilitating a clearer understanding of how the sides relate to the angles.
+        - **Summary Text Appearance**: 
+            - Animation: `FadeIn(summary_text), run_time=1`.
+            - **Purpose**: This reinforces learning by summarizing what each variable represents, allowing viewers to consolidate their understanding.
+
+    - **Coordinate element animations with VGroup transitions**:
+        - The triangle appears first, leading into the labeling, which builds context before introducing the formula. 
+        - The arrows are introduced after the formula to connect the visual elements, ensuring a pedagogical flow from visual representation to mathematical relationship.
+
+2. **Scene Flow - Pedagogical Pacing and Clarity:**
+    - **Overall animation sequence, spatial progression for learning**:
+        - The scene starts with the appearance of the triangle, followed by labels for each side and angle, then the formula, and finally the arrows connecting the triangle to the formula. This sequence supports the logical progression of understanding the Law of Sines.
+        - The triangle is positioned to the left, allowing the formula to flow in from the right, creating a natural left-to-right reading flow that mirrors conventional mathematical notation.
+    
+    - **Transition buffers for pedagogical pauses**:
+        - After each label, a `Wait(0.5)` is used to give viewers time to absorb the information before moving on, which is essential for retention.
+        - `Wait(2)` is added at the end of the scene to allow viewers to reflect on the overarching relationships established.
+    
+    - **Coordinate animation timing with narration for engagement and comprehension**:
+        - The narration cues will sync with animations such as introducing the triangle when it appears and discussing each label as it fades in. This synchronization draws viewers’ attention right where it’s needed, enhancing understanding and retention.
+
+[NARRATION]
+- **Pedagogical Narration Script:**
+    - [Start of Scene 3] 
+    - "Now, let's explore an important relationship in triangles, known as the Law of Sines." [Triangle appears]
+    - "Here, we have a triangle. Its sides are labeled as 'a', 'b', and 'c', corresponding to angles 'A', 'B', and 'C' respectively." [Fade in labels sequentially]
+    - "This triangle represents any triangle, not just special ones like right triangles." [Pause for effect]
+    - "The Law of Sines states that the ratio of a side length to the sine of its opposite angle is constant across all three sides." [Formula appears]
+    - "In mathematical terms, we express this as: (a/sin(A)) = (b/sin(B)) = (c/sin(C))." [Point to each part of the formula]
+    - "Each letter represents a specific part of our triangle. For instance, 'a' is the side opposite angle 'A'." [Draw arrows sequentially]
+    - "This means that if we know one side and its opposite angle, we can find the other sides and angles!" [Pause to emphasize]
+    - "To summarize: 'a' is the side opposite angle 'A', 'b' is opposite angle 'B', and 'c' is opposite angle 'C'." [Fade in summary text]
+    - "Understanding this relationship is crucial for applying trigonometry to solve triangles." [Wait 2 seconds]
+    
+- **Narration Sync - Pedagogical Alignment:**
+    - The narration will start with the triangle creation and will be timed to coincide with the appearance of the triangle and the labels. 
+    - Each label's narration will trigger as it fades in, ensuring viewers know exactly what each label means as it appears.
+    - When the formula is introduced, the narration will clearly explain its meaning while visually connecting the formula to the triangle through arrows, guiding viewer attention precisely.
+    - The summary will appear at the end, allowing viewers to consolidate their understanding before moving on, with an additional 2-second wait to encourage reflection.
+
+</SCENE_ANIMATION_NARRATION_PLAN>
+

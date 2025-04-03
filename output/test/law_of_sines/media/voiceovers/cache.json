@@ -1,0 +1,260 @@
+[
+  {
+    "input_text": "Let's explore triangles and their properties.",
+    "input_data": {
+      "input_text": "Let's explore triangles and their properties.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "41ad92a72c4d88225520c0cbe0474323a09005af920b8dffd38ae6d174168545.mp3",
+    "final_audio": "41ad92a72c4d88225520c0cbe0474323a09005af920b8dffd38ae6d174168545.mp3"
+  },
+  {
+    "input_text": "Triangles have three sides and three angles.",
+    "input_data": {
+      "input_text": "Triangles have three sides and three angles.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "48a5b6c111b5bf9c1523a13127118b5a5be50e541a659e6437ee7792e63e94a7.mp3",
+    "final_audio": "48a5b6c111b5bf9c1523a13127118b5a5be50e541a659e6437ee7792e63e94a7.mp3"
+  },
+  {
+    "input_text": "Let's explore the relationship between angles and sides in a triangle.",
+    "input_data": {
+      "input_text": "Let's explore the relationship between angles and sides in a triangle.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "dd20ac8398b4a9c27160031b684d89c56d31472610599c7aac3226c590e75d27.mp3",
+    "final_audio": "dd20ac8398b4a9c27160031b684d89c56d31472610599c7aac3226c590e75d27.mp3"
+  },
+  {
+    "input_text": "Notice how each angle has a corresponding opposite side.",
+    "input_data": {
+      "input_text": "Notice how each angle has a corresponding opposite side.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "afc26228e8edc3d22817e7748395531d426a154ba3ade2366d6f9f4903084bf1.mp3",
+    "final_audio": "afc26228e8edc3d22817e7748395531d426a154ba3ade2366d6f9f4903084bf1.mp3"
+  },
+  {
+    "input_text": "Let's label each angle and its corresponding opposite side.",
+    "input_data": {
+      "input_text": "Let's label each angle and its corresponding opposite side.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "08f62a9b9da3c9d221630269fff385efc2d86121f80c8210f5feb1de508e3e91.mp3",
+    "final_audio": "08f62a9b9da3c9d221630269fff385efc2d86121f80c8210f5feb1de508e3e91.mp3"
+  },
+  {
+    "input_text": "Larger angles correspond to longer sides.",
+    "input_data": {
+      "input_text": "Larger angles correspond to longer sides.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "7c7a4bddad622508a28abc818f12b456585923258620e06604f459f09e6dee81.mp3",
+    "final_audio": "7c7a4bddad622508a28abc818f12b456585923258620e06604f459f09e6dee81.mp3"
+  },
+  {
+    "input_text": "This leads us to a critical understanding in trigonometry.",
+    "input_data": {
+      "input_text": "This leads us to a critical understanding in trigonometry.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "ff38aece4315b9455093c9dc0db33cb73df8ae9e02e90ec9926c0bfeb09f0655.mp3",
+    "final_audio": "ff38aece4315b9455093c9dc0db33cb73df8ae9e02e90ec9926c0bfeb09f0655.mp3"
+  },
+  {
+    "input_text": "Now, let's explore an important relationship in triangles, known as the Law of Sines.",
+    "input_data": {
+      "input_text": "Now, let's explore an important relationship in triangles, known as the Law of Sines.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "9c7952107ae768e2ae79868904a0b1c3a2602a01d5e0d320a453ec33d8c80b07.mp3",
+    "final_audio": "9c7952107ae768e2ae79868904a0b1c3a2602a01d5e0d320a453ec33d8c80b07.mp3"
+  },
+  {
+    "input_text": "Here, we have a triangle. Its sides are labeled as 'a', 'b', and 'c', corresponding to angles 'A', 'B', and 'C' respectively.",
+    "input_data": {
+      "input_text": "Here, we have a triangle. Its sides are labeled as 'a', 'b', and 'c', corresponding to angles 'A', 'B', and 'C' respectively.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "1bb2cc66780c13f19123c8938bf9a2d022a504f446d1c2033f985d4d17a925c7.mp3",
+    "final_audio": "1bb2cc66780c13f19123c8938bf9a2d022a504f446d1c2033f985d4d17a925c7.mp3"
+  },
+  {
+    "input_text": "The Law of Sines states that the ratio of a side length to the sine of its opposite angle is constant across all three sides.",
+    "input_data": {
+      "input_text": "The Law of Sines states that the ratio of a side length to the sine of its opposite angle is constant across all three sides.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "be5ec62da332a4b0c799a1aadb8e8c1d2d0f31db4d7948b1145a67a6f0e6edd4.mp3",
+    "final_audio": "be5ec62da332a4b0c799a1aadb8e8c1d2d0f31db4d7948b1145a67a6f0e6edd4.mp3"
+  },
+  {
+    "input_text": "This means that if we know one side and its opposite angle, we can find the other sides and angles!",
+    "input_data": {
+      "input_text": "This means that if we know one side and its opposite angle, we can find the other sides and angles!",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "5659d5fd9b292bb94bfd789c9716d3e87ee397c62817e9a161abcd5fd690fedd.mp3",
+    "final_audio": "5659d5fd9b292bb94bfd789c9716d3e87ee397c62817e9a161abcd5fd690fedd.mp3"
+  },
+  {
+    "input_text": "To summarize: 'a' is the side opposite angle 'A', 'b' is opposite angle 'B', and 'c' is opposite angle 'C'.",
+    "input_data": {
+      "input_text": "To summarize: 'a' is the side opposite angle 'A', 'b' is opposite angle 'B', and 'c' is opposite angle 'C'.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "a0882b3e0460e30ea09e8704f3bedbbef23d4887a2a76409171f923ba3922951.mp3",
+    "final_audio": "a0882b3e0460e30ea09e8704f3bedbbef23d4887a2a76409171f923ba3922951.mp3"
+  },
+  {
+    "input_text": "Now, let's explore how we can derive the Law of Sines from the properties of similar triangles.",
+    "input_data": {
+      "input_text": "Now, let's explore how we can derive the Law of Sines from the properties of similar triangles.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "2cab56e815bb9b21242469bb95e07e40399c77f613e34f41a9676268727ce3fb.mp3",
+    "final_audio": "2cab56e815bb9b21242469bb95e07e40399c77f613e34f41a9676268727ce3fb.mp3"
+  },
+  {
+    "input_text": "Now, let's explore how we can derive the Law of Sines from the properties of similar triangles.",
+    "input_data": {
+      "input_text": "Now, let's explore how we can derive the Law of Sines from the properties of similar triangles.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "2cab56e815bb9b21242469bb95e07e40399c77f613e34f41a9676268727ce3fb.mp3",
+    "final_audio": "2cab56e815bb9b21242469bb95e07e40399c77f613e34f41a9676268727ce3fb.mp3"
+  },
+  {
+    "input_text": "Here we have two right-angled triangles, Triangle A and Triangle B, which share a common angle, denoted as \\( \\angle A \\). Notice how these triangles are positioned side by side.",
+    "input_data": {
+      "input_text": "Here we have two right-angled triangles, Triangle A and Triangle B, which share a common angle, denoted as \\( \\angle A \\). Notice how these triangles are positioned side by side.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "9122e0f570699984dfdcf5805ac34779480dcde2f1471e9761179adfdce65ac2.mp3",
+    "final_audio": "9122e0f570699984dfdcf5805ac34779480dcde2f1471e9761179adfdce65ac2.mp3"
+  },
+  {
+    "input_text": "Finally, we can express this relationship mathematically with the Law of Sines: \\( \\frac{a}{\\sin A} = \\frac{b}{\\sin B} \\).",
+    "input_data": {
+      "input_text": "Finally, we can express this relationship mathematically with the Law of Sines: \\( \\frac{a}{\\sin A} = \\frac{b}{\\sin B} \\).",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "6d9109a3fd6e868aa5b47e980484851ab79d9ad9d364b35bd899b01cefa4cc0f.mp3",
+    "final_audio": "6d9109a3fd6e868aa5b47e980484851ab79d9ad9d364b35bd899b01cefa4cc0f.mp3"
+  },
+  {
+    "input_text": "Now, let's explore an example problem using the Law of Sines.",
+    "input_data": {
+      "input_text": "Now, let's explore an example problem using the Law of Sines.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "ff6e02d84c72fda94e142718d371807596e3e3b6c5747ea4c6835110a24b8f97.mp3",
+    "final_audio": "ff6e02d84c72fda94e142718d371807596e3e3b6c5747ea4c6835110a24b8f97.mp3"
+  },
+  {
+    "input_text": "Here, we have a triangle with angles A and B, and side a.",
+    "input_data": {
+      "input_text": "Here, we have a triangle with angles A and B, and side a.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "3b63b9f303dbd24b391441b6c08695f8f7fb2d97d1f0a0244a273d2c90401fb7.mp3",
+    "final_audio": "3b63b9f303dbd24b391441b6c08695f8f7fb2d97d1f0a0244a273d2c90401fb7.mp3"
+  },
+  {
+    "input_text": "To find angle C, we can apply the Law of Sines.",
+    "input_data": {
+      "input_text": "To find angle C, we can apply the Law of Sines.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "901d146b3e01752a113e6b24973d5da1b4400107099f50c8218c4626a51e596d.mp3",
+    "final_audio": "901d146b3e01752a113e6b24973d5da1b4400107099f50c8218c4626a51e596d.mp3"
+  },
+  {
+    "input_text": "Let's rearrange the formula to solve for angle C.",
+    "input_data": {
+      "input_text": "Let's rearrange the formula to solve for angle C.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "2a07ff4b8460c054b11ce7dd6347d715823f79474ada330c1a441121026a9ec2.mp3",
+    "final_audio": "2a07ff4b8460c054b11ce7dd6347d715823f79474ada330c1a441121026a9ec2.mp3"
+  },
+  {
+    "input_text": "Now, substituting the known values into this formula.",
+    "input_data": {
+      "input_text": "Now, substituting the known values into this formula.",
+      "service": "kokoro_self",
+      "voice": "af",
+      "lang": "en-us"
+    },
+    "original_audio": "85e142303e89ca4739f2955042ec85f1b1803f0c9d26c7c5517f5eca01683201.mp3",
+    "final_audio": "85e142303e89ca4739f2955042ec85f1b1803f0c9d26c7c5517f5eca01683201.mp3"
+  },
+  {
+    "input_text": "Now, let's explore the final aspects of the Law of Sines in Scene 7.",
+    "input_data": {
+      "input_text": "Now, let's explore the final aspects of the Law of Sines in Scene 7.",
+      "service": "gtts"
+    },
+    "original_audio": "now-let-s-explore-the-final-aspects-of-the-law-of-78704159.mp3",
+    "final_audio": "now-let-s-explore-the-final-aspects-of-the-law-of-78704159.mp3"
+  },
+  {
+    "input_text": "Now, let's explore the final aspects of the Law of Sines in Scene 7.",
+    "input_data": {
+      "input_text": "Now, let's explore the final aspects of the Law of Sines in Scene 7.",
+      "service": "gtts"
+    },
+    "original_audio": "now-let-s-explore-the-final-aspects-of-the-law-of-78704159.mp3",
+    "final_audio": "now-let-s-explore-the-final-aspects-of-the-law-of-78704159.mp3"
+  },
+  {
+    "input_text": "Now, let's explore the final aspects of the Law of Sines in Scene 7.",
+    "input_data": {
+      "input_text": "Now, let's explore the final aspects of the Law of Sines in Scene 7.",
+      "service": "gtts"
+    },
+    "original_audio": "now-let-s-explore-the-final-aspects-of-the-law-of-78704159.mp3",
+    "final_audio": "now-let-s-explore-the-final-aspects-of-the-law-of-78704159.mp3"
+  }
+]

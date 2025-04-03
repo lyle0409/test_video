@@ -1,0 +1,68 @@
+<SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+0. **Dependencies**:
+    - **Manim API Version**: Target the latest stable Manim release (e.g., v0.12.0), using only documented API elements.
+    - **Allowed Imports**: `from manim import *`.
+    
+1. **Manim Object Selection & Configuration (Text and Shapes)**:
+    - **Triangle**:
+        - Object: `Polygon`
+        - Parameters: Vertices calculated to ensure the triangle fits within the safe margins, e.g., `Polygon([-1, 0, 0], [1, 0, 0], [0, 1, 0])`.
+    - **Arrows**:
+        - Object: `Arrow`
+        - Parameters: Each arrow will have a `stroke_width=3`, and size adjustments will be made to ensure they are clearly visible and fit within the layout.
+    - **Labels**:
+        - Objects: `MathTex`
+        - Parameters: 
+            - For angles: `MathTex(r"\angle A")`, `MathTex(r"\angle B")`, `MathTex(r"\angle C")` with font size 24.
+            - For sides: `MathTex(r"a")`, `MathTex(r"b")`, `MathTex(r"c")` with font size 24.
+    - **Annotation**:
+        - Object: `MathTex`
+        - Parameters: `MathTex(r"\text{Larger angles correspond to longer sides}")` with font size 24, placed above the triangle.
+    
+2. **VGroup Structure & Hierarchy**:
+    - Grouping:
+        - Triangle Group: `triangle_group = VGroup(triangle)`
+        - Arrow Group: `arrow_group = VGroup(arrow_A, arrow_B, arrow_C)`
+        - Label Group: `label_group = VGroup(angle_A_label, side_a_label, angle_B_label, side_b_label, angle_C_label, side_c_label)`
+        - Annotation Group: `annotation_group = VGroup(annotation)`
+
+3. **Spatial Positioning Strategy**:
+    - **Triangle Positioning**:
+        - Reference: ORIGIN, `buff=0.5`
+    - **Arrows**:
+        - Arrow from Angle A: `arrow_A.next_to(angle_A, UP, buff=0.3)`
+        - Arrow from Angle B: `arrow_B.next_to(angle_B, UP, buff=0.3)`
+        - Arrow from Angle C: `arrow_C.next_to(angle_C, UP, buff=0.3)`
+    - **Labels**:
+        - Position Angle A Label: `angle_A_label.next_to(angle_A, LEFT, buff=0.3)`
+        - Position Side a Label: `side_a_label.next_to(side_a, DOWN, buff=0.3)`
+        - Repeat for angles B and C, ensuring spacing and alignment with triangle edges.
+    - **Annotation Positioning**:
+        - Place annotation above triangle: `annotation.move_to(UP * 2 + ORIGIN)`, ensuring at least `0.3` units from the triangle.
+
+4. **Animation Methods & Object Lifecycle Management**:
+    - **Animation Sequence**:
+        - Create Triangle: `self.play(Create(triangle), run_time=1)`
+        - Wait for observation: `self.wait(1)`
+        - Create Arrows: `self.play(Create(arrow_A), run_time=0.5)` and repeat for remaining arrows with appropriate waits.
+        - Write Labels: `self.play(Write(angle_A_label), run_time=0.5)` and repeat for remaining labels.
+        - Wait for understanding: `self.wait(1)`
+        - Emphasize Relationships: `self.play(Circumscribe(arrow_group, run_time=1))`
+        - Fade in annotation: `self.play(FadeIn(annotation))`
+        - Wait for reflection: `self.wait(2)`
+        - Final Transition: `self.play(FadeOut(VGroup(triangle_group, arrow_group, label_group, annotation_group)), run_time=1)`
+
+5. **Code Structure & Reusability**:
+    - Create functions for common tasks, e.g., `def create_triangle()`, `def create_arrow()`, `def create_label()`.
+    - Organize code into sections:
+        - Dependencies
+        - Object Definitions
+        - Layout Stages
+        - Construct Method
+    - Include inline comments explaining choices, e.g., `# Position angle A label next to the angle`.
+
+***Mandatory Safety Checks***:
+    - **Safe Area Enforcement**: All objects, including text bounding boxes, must remain within 0.5 unit margins.
+    - **Minimum Spacing Validation**: Confirm a minimum of 0.3 units spacing between every pair of objects.
+    - **Transition Buffers**: Use explicit `Wait()` calls to separate animation steps and sub-scenes.
+</SCENE_TECHNICAL_IMPLEMENTATION_PLAN>

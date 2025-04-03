@@ -1,0 +1,105 @@
+<SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+0. **Dependencies**:
+    - **Manim API Version**: Target the latest stable Manim release, using only documented API elements.
+    - **Allowed Imports**: `from manim import *` (this includes all necessary classes and functions).
+
+1. **Manim Object Selection & Configuration (Text and Shapes)**:
+    - **Triangle**: 
+        - Use `Polygon` to create the triangle vertices at `[-2, -1, 0], [2, -1, 0], [0, 2, 0]`.
+        - **Color**: Default color will be set to `WHITE`.
+    - **Labels**:
+        - **Label A**: `MathTex("A", font_size=24)`.
+        - **Label B**: `MathTex("B", font_size=24)`.
+        - **Label C**: `MathTex("C", font_size=24)`.
+    - **Properties Text**:
+        - Use `Tex("Triangles have three sides and three angles.", font_size=24)` for explanatory text.
+    - All objects will be positioned ensuring they are within the safe margins (0.5 units from edges) and maintaining at least 0.3 units spacing.
+
+2. **VGroup Structure & Hierarchy**:
+    - Create a `VGroup` for the triangle and its labels:
+        - `triangle_group = VGroup(triangle, A_label, B_label, C_label)`.
+    - Group the properties text separately:
+        - `properties_group = VGroup(text)`.
+    - This structure allows for efficient animation and management of related elements.
+
+3. **Spatial Positioning Strategy**:
+    - **Triangle**: Centered using `ORIGIN`.
+    - **Label A**: Positioned at the midpoint of the base edge:
+        ```python
+        A_label.next_to(triangle.get_bottom(), UP + LEFT * 0.5, buff=0.3)
+        ```
+    - **Label B**: Positioned at the right edge:
+        ```python
+        B_label.next_to(triangle.get_right(), UP + RIGHT * 0.3, buff=0.3)
+        ```
+    - **Label C**: Positioned at the apex:
+        ```python
+        C_label.next_to(triangle.get_top(), UP + RIGHT * 0.5, buff=0.3)
+        ```
+    - **Properties Text**: Positioned below the triangle:
+        ```python
+        text.next_to(triangle, DOWN, buff=0.5)
+        ```
+    - All positioning must respect the safe area margins and spacing requirements.
+
+4. **Animation Methods & Object Lifecycle Management**:
+    - **Triangle Animation**: 
+        - `self.play(Create(triangle_group, run_time=2))`.
+    - **Label Animations**:
+        - `self.play(Write(A_label, run_time=1))`.
+        - `self.play(Write(B_label, run_time=1))`.
+        - `self.play(Write(C_label, run_time=1))`.
+    - **Properties Text Animation**:
+        - `self.play(FadeIn(text, run_time=1))`.
+        - `self.wait(2)` to allow viewers to absorb the information.
+        - `self.play(FadeOut(text))`.
+    - **Transition Buffers**: Ensure sufficient wait times between animations to maintain clarity:
+        - `self.wait(0.5)` before moving to the next step.
+
+5. **Code Structure & Reusability**:
+    - The overall code structure will be organized into the following sections:
+        - Dependencies
+        - Object Definitions
+        - Layout Stages
+        - Main `construct` method.
+    - Inline comments will document configuration choices and rationale.
+
+```python
+class IntroductionToTriangles(Scene):
+    def construct(self):
+        # Triangle Creation
+        triangle = Polygon([-2, -1, 0], [2, -1, 0], [0, 2, 0], color=WHITE)
+        A_label = MathTex("A", font_size=24)
+        B_label = MathTex("B", font_size=24)
+        C_label = MathTex("C", font_size=24)
+
+        # Positioning Labels
+        A_label.next_to(triangle.get_bottom(), UP + LEFT * 0.5, buff=0.3)
+        B_label.next_to(triangle.get_right(), UP + RIGHT * 0.3, buff=0.3)
+        C_label.next_to(triangle.get_top(), UP + RIGHT * 0.5, buff=0.3)
+
+        # Group Triangle and Labels
+        triangle_group = VGroup(triangle, A_label, B_label, C_label)
+
+        # Properties Text
+        text = Tex("Triangles have three sides and three angles.", font_size=24)
+        text.next_to(triangle, DOWN, buff=0.5)
+
+        # Animation Sequence
+        self.play(Create(triangle_group, run_time=2))
+        self.play(Write(A_label, run_time=1))
+        self.play(Write(B_label, run_time=1))
+        self.play(Write(C_label, run_time=1))
+        self.play(FadeIn(text, run_time=1))
+        self.wait(2)
+        self.play(FadeOut(text))
+
+        # Exiting the scene
+        self.wait(0.5)
+```
+
+***Mandatory Safety Checks***:
+    - **Safe Area Enforcement**: All objects, including text bounding boxes, must remain within 0.5 unit margins.
+    - **Minimum Spacing Validation**: Confirm a minimum of 0.3 units spacing between every pair of objects.
+    - **Transition Buffers**: Use explicit `Wait()` calls to separate animation steps and sub-scenes.
+</SCENE_TECHNICAL_IMPLEMENTATION_PLAN>

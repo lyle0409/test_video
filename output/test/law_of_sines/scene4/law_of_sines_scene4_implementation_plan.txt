@@ -1,0 +1,180 @@
+# Scene 4 Implementation Plan
+
+<SCENE_VISION_STORYBOARD_PLAN>
+[SCENE_VISION]
+1.  **Scene Overview**:
+    - This scene aims to derive the Law of Sines using the properties of similar triangles, reinforcing the connection between angles and side lengths in a triangle. The key takeaway for viewers is understanding how the ratios of the sides to the sine of their opposite angles are equal due to similarity.
+    - **Visual learning objectives for viewers:** Use `Polygon` to create two triangles with a common angle, and `MathTex` to illustrate the Law of Sines mathematically. The height will be represented using a dashed `Line` to maintain clarity in the geometric relationships.
+    - Manim visuals support learning by clearly showcasing the relationship between angles and sides in similar triangles. The use of `VGroup` can help organize the triangles and accompanying labels for coherent animation and spacing control. The mathematical notation will be emphasized using `MathTex`, ensuring clarity in conveying the Law of Sines.
+    - Key concepts to emphasize visually include the similar triangles' properties and the relationship defined by the Law of Sines through mathematical expressions, ensuring adherence to safe area margins and maintaining a minimum spacing of 0.3 units between all elements.
+
+[STORYBOARD]
+1.  **Visual Flow & Pacing (Manim Animation Sequence)**:
+    - **Sub-scene 1**: 
+        - **Visual Element**: Two right-angled triangles created using `Polygon`, with the first triangle on the left and the second adjacent to it, maintaining a 0.5 unit margin.
+        - **Animation Sequence**: 
+            - Create the first triangle using `Polygon` with vertices at points `(-2, 0, 0)`, `(-2, 2, 0)`, and `(-1, 0, 0)` (right triangle).
+            - Create the second triangle using `Polygon` with vertices at points `(0, 0, 0)`, `(0, 2, 0)`, and `(1, 0, 0)` (similar right triangle).
+            - Use `Create` for both triangles simultaneously with a `run_time` of 2 seconds.
+            - Ensure a minimum spacing of 0.3 units between the triangles and the scene edges.
+    
+    - **Sub-scene 2**: 
+        - **Visual Element**: Add a dashed line representing the height dropped from the top vertex of the first triangle to its base.
+        - **Animation Sequence**: 
+            - Create a dashed line using `Line` from point `(-2, 2, 0)` to point `(-2, 0, 0)`, setting `dashed=True`.
+            - Use `Create` for the dashed line with a `run_time` of 1 second.
+            - Position the dashed line with a minimum spacing of 0.3 units from the triangles and other elements.
+
+    - **Sub-scene 3**: 
+        - **Visual Element**: Introduce `MathTex` expressions to denote angles and the Law of Sines.
+        - **Animation Sequence**:
+            - Create `MathTex(r"\angle A", color=YELLOW)` and position it near the angle of the left triangle, using `.next_to()` with a 0.3 unit offset to avoid overlap.
+            - Create `MathTex(r"\angle B", color=YELLOW)` for the right triangle and position it similarly.
+            - Use `Write` animation for both `MathTex` objects with a `run_time` of 1 second each.
+            - Finally, introduce the Law of Sines using `MathTex(r"\frac{a}{\sin A} = \frac{b}{\sin B}", color=BLUE)`, centering it at the bottom of the scene with a 0.3 unit spacing from the triangles. Use `Write` animation with a `run_time` of 1.5 seconds.
+
+    - **Pacing**: After displaying each sub-scene, use `Wait(1)` to allow viewers to absorb the information before transitioning to the next visual element. The scene will conclude with the Law of Sines displayed prominently, ensuring all objects maintain the required minimum spacing and are well within safe area margins.
+
+</SCENE_VISION_STORYBOARD_PLAN>
+
+<SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+0. **Dependencies**:
+    - **Manim API Version**: Target the latest stable Manim release (v0.15.1).
+    - **Allowed Imports**: `from manim import *` (including `Polygon`, `MathTex`, `Line`, `VGroup`, etc.), `numpy`.
+
+1. **Manim Object Selection & Configuration (Text and Shapes)**:
+    - **Triangles**:
+        - First Triangle: `Polygon` with vertices at `(-2, 0, 0)`, `(-2, 2, 0)`, `(-1, 0, 0)`.
+        - Second Triangle: `Polygon` with vertices at `(0, 0, 0)`, `(0, 2, 0)`, `(1, 0, 0)`.
+    - **Dashed Line**:
+        - `Line` from `(-2, 2, 0)` to `(-2, 0, 0)` with `dashed=True`.
+    - **Math Text**:
+        - Angles: 
+            - `MathTex(r"\angle A", color=YELLOW)` for the left triangle.
+            - `MathTex(r"\angle B", color=YELLOW)` for the right triangle.
+        - Law of Sines: `MathTex(r"\frac{a}{\sin A} = \frac{b}{\sin B}", color=BLUE)`.
+    - **Text Considerations**:
+        - All `MathTex` objects are used for mathematical expressions.
+        - Font sizes: 
+            - Angles: 24.
+            - Law of Sines: 24.
+    - Confirm all objects begin within the safe area (0.5 units from all edges) and maintain at least 0.3 units spacing to avoid overlaps.
+
+2. **VGroup Structure & Hierarchy**:
+    - Grouping:
+        - `triangle_group = VGroup(first_triangle, second_triangle)`: Holds both triangles.
+        - `angle_group = VGroup(angle_A, angle_B)`: Holds angle annotations.
+        - `law_group = VGroup(law_of_sines)`: Holds the Law of Sines expression.
+    - Ensure internal spacing of `0.3` units within `VGroups`.
+
+3. **Spatial Positioning Strategy**:
+    - **Triangles**:
+        - Position first triangle at `(-2, 0, 0)`, second triangle at `(0, 0, 0)` with a `buff` of `0.5` units.
+    - **Dashed Line**:
+        - Positioned at `(-2, 2, 0)` to `(-2, 0, 0)` with a `buff` of `0.3`.
+    - **Angles**:
+        - `angle_A.next_to(first_triangle, UP, buff=0.3)`: Above the left triangle.
+        - `angle_B.next_to(second_triangle, UP, buff=0.3)`: Above the right triangle.
+    - **Law of Sines**:
+        - `law_of_sines.move_to(ORIGIN + DOWN*2)`: Centered at the bottom, maintaining `0.3` unit spacing from triangles and scene edges.
+    - All objects are checked to ensure they remain within the defined margins and avoid bounding box overflow.
+
+4. **Animation Methods & Object Lifecycle Management**:
+    - **Animation Sequence**:
+        - `self.play(Create(triangle_group), run_time=2)`: Create both triangles.
+        - `self.wait(1)`: Allow viewers to absorb the triangles.
+        - `self.play(Create(dashed_line), run_time=1)`: Introduce the dashed line.
+        - `self.wait(1)`: Allow viewers to absorb the height representation.
+        - `self.play(Write(angle_group), run_time=1)`: Display angles.
+        - `self.wait(1)`: Allow viewers to absorb the angles.
+        - `self.play(Write(law_group), run_time=1.5)`: Show Law of Sines.
+        - `self.wait(1)`: Final pause for viewers to absorb the concept.
+    - Ensure every object's appearance and removal is managed to prevent clutter and maintain scene clarity.
+
+5. **Code Structure & Reusability**:
+    - Modular functions can be created for triangles and labels:
+        - `def create_triangle(vertices): return Polygon(*vertices)`.
+        - `def create_angle_label(text, triangle, direction): ...`.
+    - Organize the overall code structure into logical sections: dependencies, object definitions, individual layout stages, and the main `construct` method.
+    - Include inline comments to document the rationale for configuration choices, referencing the Manim Documentation.
+
+***Mandatory Safety Checks***:
+    - **Safe Area Enforcement**: All objects, including text bounding boxes, must remain within 0.5 unit margins.
+    - **Minimum Spacing Validation**: Confirm a minimum of 0.3 units spacing between every pair of objects.
+    - **Transition Buffers**: Use explicit `Wait()` calls to separate animation steps and sub-scenes.
+</SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+
+<SCENE_ANIMATION_NARRATION_PLAN>
+
+[ANIMATION_STRATEGY]
+1. **Pedagogical Animation Plan:** 
+    - **Parent VGroup transitions:**
+        - No VGroup transitions are necessary for this scene as the elements will be displayed one after another without the need for collective movement.
+    
+    - **Element animations:**
+        - **Triangles Creation:**
+            - **Animation Type:** `Create`
+            - **Target Object:** `triangle_group`
+            - **Run Time:** 2 seconds
+            - **Pedagogical Purpose:** The simultaneous creation of both triangles emphasizes their similarity and sets the stage for understanding the Law of Sines. It visually reinforces the idea that these two triangles are related in a fundamental way.
+
+        - **Dashed Line Creation:**
+            - **Animation Type:** `Create`
+            - **Target Object:** `dashed_line`
+            - **Run Time:** 1 second
+            - **Pedagogical Purpose:** The introduction of the dashed line serves as a visual aid to highlight the height dropped from the vertex of the triangle. This geometric depiction is crucial for understanding the relationship between the sides and the angles of the triangles.
+
+        - **Angle Labels Display:**
+            - **Animation Type:** `Write`
+            - **Target Object:** `angle_A`
+            - **Run Time:** 1 second
+            - **Pedagogical Purpose:** Displaying the angle labels immediately following the triangles' creation helps viewers to associate the angles with their respective triangles, solidifying the visual connection.
+
+            - **Animation Type:** `Write`
+            - **Target Object:** `angle_B`
+            - **Run Time:** 1 second
+            - **Pedagogical Purpose:** Similar to `angle_A`, this reinforces the importance of angles in the triangles and prepares the viewer for the next step in deriving the Law of Sines.
+
+        - **Law of Sines Display:**
+            - **Animation Type:** `Write`
+            - **Target Object:** `law_group`
+            - **Run Time:** 1.5 seconds
+            - **Pedagogical Purpose:** Presenting the Law of Sines at this point provides a clear culmination of the visual representations. It connects the previously displayed elements and reinforces the relationships established through the triangles and their angles.
+
+    - **Coordinate element animations:**
+        - The triangles will be created first, followed by the dashed line, then the angle labels, and finally the Law of Sines expression. This sequential approach allows for a clear understanding of how each element builds upon the last, promoting a logical flow of information.
+
+2. **Scene Flow - Pedagogical Pacing and Clarity:**
+    - **Overall animation sequence:**
+        - The scene will begin with the introduction of the two triangles side by side. This visual establishes the context for deriving the Law of Sines. 
+        - Following the triangles' creation, the dashed line will be added, emphasizing the height of the triangle and aiding in the understanding of the relationship between the sides and angles.
+        - Next, the angles will be labeled to clarify which angle corresponds to which triangle, reinforcing spatial understanding.
+        - Finally, the Law of Sines will be presented, summarizing the relationships illustrated by the triangles and marking the conclusion of the derivation process.
+    
+    - **Transition buffers for pedagogical pauses:**
+        - **Wait(1)** after creating the triangles: This allows viewers a moment to absorb the visual representation before moving on.
+        - **Wait(1)** after the dashed line is created: This pause gives viewers time to understand the significance of the height in the context of the triangles.
+        - **Wait(1)** after the angle labels: This ensures viewers can associate the angles with the triangles before introducing the Law of Sines.
+        - **Wait(1)** after displaying the Law of Sines: This serves as a final moment for viewers to process the entire derivation.
+
+    - **Coordinate animation timing with narration:**
+        - The animations will be tightly synchronized with the narration, ensuring that as each element is introduced, the corresponding explanation is provided. For example, the angles will be labeled just as the viewer hears about their significance, reinforcing the connection between visuals and verbal explanations.
+
+[NARRATION]
+- **Pedagogical Narration Script:**
+    - "Now, let's explore how we can derive the Law of Sines from the properties of similar triangles." **(Start creating triangles)**
+    - "Here we have two right-angled triangles, Triangle A and Triangle B, which share a common angle, denoted as \( \angle A \). Notice how these triangles are positioned side by side." **(Wait 1 second)**
+    - "Next, let’s drop a height from the top vertex of Triangle A to its base, creating a dashed line. This line represents the height of Triangle A." **(Create dashed line, Wait 1 second)**
+    - "The height helps us understand the relationship between the angle \( \angle A \) and the side opposite to it." **(Wait 1 second)**
+    - "Now, let's label our angles. Here, we have \( \angle A \) in Triangle A and \( \angle B \) in Triangle B." **(Write angle labels, Wait 1 second)**
+    - "These angles are crucial because they relate directly to the lengths of the sides opposite them." **(Wait 1 second)**
+    - "Finally, we can express this relationship mathematically with the Law of Sines: \( \frac{a}{\sin A} = \frac{b}{\sin B} \)." **(Write Law of Sines, Wait 1 second)**
+    - "This formula tells us that the ratio of a side length to the sine of its opposite angle is constant across any triangle." **(Wait 1 second)**
+
+- **Narration Sync - Pedagogical Alignment:**
+    - The narration is aligned with the animation cues. For instance, as the triangles are created, the narration introduces them, ensuring that viewers focus on the visual and auditory elements simultaneously. 
+    - Each wait period after an animation allows viewers to process what they just saw before transitioning to the next point, reinforcing understanding. 
+    - The combination of visual elements and narration will create a cohesive learning experience, enhancing comprehension of the Law of Sines and its derivation from similar triangles.
+
+</SCENE_ANIMATION_NARRATION_PLAN>
+

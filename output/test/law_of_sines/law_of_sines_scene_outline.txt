@@ -1,0 +1,50 @@
+<SCENE_OUTLINE>
+    <SCENE_1>
+    Scene Title: Introduction to Triangles
+    Scene Purpose: Introduce basic triangle properties and the need for relationships between sides and angles.
+    Scene Description: Begin with a simple triangle drawn on the screen. Define the concept of triangles, highlighting the three sides and three angles. Explain the importance of understanding relationships within triangles for solving various problems.
+    Scene Layout: Position the triangle centrally in the scene with sides labeled A, B, and C. Keep a safe margin of 0.5 units around the triangle. Each label should be spaced at least 0.3 units from the triangle edges and from each other, ensuring clarity.
+    </SCENE_1>
+
+    <SCENE_2>
+    Scene Title: Understanding Angles and Sides
+    Scene Purpose: Establish the relationship between angles and sides in a triangle, leading to the need for the Law of Sines.
+    Scene Description: Introduce the concept of opposite sides to each angle in a triangle. Use arrows to denote which side corresponds to each angle. Explain how larger angles correspond to longer sides, and vice versa.
+    Scene Layout: The triangle from Scene 1 remains in the center, with arrows pointing from each angle to its opposite side. Maintain a safe margin of 0.5 units. Ensure the arrows are spaced at least 0.3 units from each triangle edge and each other for visibility.
+    </SCENE_2>
+
+    <SCENE_3>
+    Scene Title: Introducing the Law of Sines
+    Scene Purpose: Define the Law of Sines and present its formula.
+    Scene Description: Clearly state the Law of Sines: (a/sin(A)) = (b/sin(B)) = (c/sin(C)). Explain what each symbol represents. Use a visual representation of the formula alongside a triangle, demonstrating how it connects angles and sides.
+    Scene Layout: Position the triangle on the left side of the screen and the formula on the right. Ensure the triangle is clearly visible with a safe margin of 0.5 units. The formula should be large enough to read easily, with a minimum of 0.3 units between the triangle and the text.
+    </SCENE_3>
+
+    <SCENE_4>
+    Scene Title: Deriving the Law of Sines
+    Scene Purpose: Show how the Law of Sines can be derived from the properties of similar triangles.
+    Scene Description: Illustrate two triangles sharing a common angle. Use dashed lines to show the height dropped from one vertex to the base. Explain how the ratios of the sides to the sine of their opposite angles are equal due to similarity.
+    Scene Layout: Position the first triangle on the left and the second triangle directly adjacent to it, maintaining a safe margin of 0.5 units. The dashed line should be clear and distinct, with at least 0.3 units spacing from the triangles and between itself and the text.
+    </SCENE_4>
+
+    <SCENE_5>
+    Scene Title: Example Problem 1
+    Scene Purpose: Apply the Law of Sines to a concrete example, reinforcing understanding through practice.
+    Scene Description: Present a triangle with known angles A and B and side a. Show how to find angle C using the Law of Sines. Walk through the calculation step-by-step, ensuring clarity in each operation.
+    Scene Layout: Display the triangle prominently in the center with the known values labeled. The calculations should appear to the right in a clear, step-by-step format, with a safe margin of 0.5 units around all elements and 0.3 units between the triangle and the text.
+    </SCENE_5>
+
+    <SCENE_6>
+    Scene Title: Example Problem 2
+    Scene Purpose: Further practice with another example that requires finding a side using the Law of Sines.
+    Scene Description: Introduce a triangle with known sides and one angle. Demonstrate how to find the other angles and one missing side using the Law of Sines. Emphasize the application of the formula and the steps taken.
+    Scene Layout: The triangle should be positioned centrally with known values labeled clearly. The process of finding the missing angle and side should be displayed to the right, maintaining a safe margin of 0.5 units and at least 0.3 units between elements for clarity.
+    </SCENE_6>
+
+    <SCENE_7>
+    Scene Title: Summary and Applications
+    Scene Purpose: Recap the Law of Sines and discuss its practical applications.
+    Scene Description: Summarize key points about the Law of Sines, its formula, and its importance in solving triangle problems. Provide examples of real-world applications, such as navigation and engineering.
+    Scene Layout: Use a split screen with the summary on one side and images depicting real-world applications on the other. Ensure all elements are within a safe margin of 0.5 units, with at least 0.3 units spacing between the summary text and images for clean presentation.
+    </SCENE_7>
+</SCENE_OUTLINE>

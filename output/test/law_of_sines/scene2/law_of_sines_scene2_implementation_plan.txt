@@ -1,0 +1,184 @@
+# Scene 2 Implementation Plan
+
+<SCENE_VISION_STORYBOARD_PLAN>
+[SCENE_VISION]
+1. **Scene Overview**:
+   - This scene aims to visually establish the relationship between the angles and the opposite sides of a triangle, paving the way for the introduction of the Law of Sines. It sets the stage for understanding how the size of an angle relates to the length of its corresponding side.
+   - **Visual learning objectives for viewers:** Use `Polygon` for the triangle, `Arrow` objects to illustrate the relationships between angles and sides, and `MathTex` for any relevant mathematical notation. 
+   - Manim visuals support learning by clearly delineating the connections between angles and their opposite sides. The use of arrows will visually guide the viewer's attention, while `MathTex` will convey key concepts succinctly. Ensure all elements respect the safe area margins and minimum spacing.
+   - Key concepts to emphasize visually include the idea that larger angles correspond to longer sides, which will be represented through the spatial arrangement of arrows and annotations.
+
+[STORYBOARD]
+1. **Visual Flow & Pacing (Manim Animation Sequence)**:
+   - **Sub-scene 1: Introduction of Arrows**
+     - **Visual Element:** The triangle (using `Polygon`) remains from Scene 1, placed at the center of the screen.
+     - **Animation Sequence:**
+       - `Create` the triangle using `Polygon`, ensuring it fits within the safe area margins with a minimum spacing of 0.3 units from the edges.
+       - `Wait(1)` for viewers to observe the triangle before proceeding.
+       - Create an arrow from the first angle to its opposite side using `Arrow`, ensuring it is spaced at least 0.3 units from the triangle edge and other arrows.
+       - Repeat the arrow creation for the second angle and its corresponding side, and then the third, maintaining the same spacing.
+       - Each arrow should be animated with `Create` for emphasis, taking `run_time=0.5` for each arrow.
+       - After all arrows are created, `Wait(1)` for viewers to absorb the visual.
+
+   - **Sub-scene 2: Labels and Relationships**
+     - **Visual Element:** `MathTex` labels for each angle and corresponding side.
+     - **Animation Sequence:**
+       - Position `MathTex(r"\angle A")` near the first angle, then use `Write` animation for a duration of `run_time=0.5`.
+       - Position `MathTex(r"a")` near the opposite side of angle A and use `Write` for `run_time=0.5`. Ensure a minimum spacing of 0.3 units from the triangle and other labels.
+       - Repeat this process for the remaining angles and sides, labeling them as `\angle B`, `b`, `\angle C`, and `c` respectively.
+       - After all labels are written, `Wait(1)` to provide time for understanding.
+
+   - **Sub-scene 3: Emphasizing Relationships**
+     - **Visual Element:** Highlight the arrows and labels.
+     - **Animation Sequence:**
+       - Use `Circumscribe` on the arrows to emphasize their connection to the respective angles and sides, with a `run_time=1`.
+       - Use `FadeIn` for a `MathTex` annotation stating "Larger angles correspond to longer sides" to reinforce the visual relationship, positioned centered above the triangle with a minimum spacing of 0.3 units from the triangle and arrows.
+       - `Wait(2)` for viewers to reflect on this connection before transitioning to the next scene.
+       
+   - **Final Transition:** Use `FadeOut` for all elements in the scene to smoothly transition to the next scene, taking `run_time=1`.
+
+</SCENE_VISION_STORYBOARD_PLAN>
+
+<SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+0. **Dependencies**:
+    - **Manim API Version**: Target the latest stable Manim release (e.g., v0.12.0), using only documented API elements.
+    - **Allowed Imports**: `from manim import *`.
+    
+1. **Manim Object Selection & Configuration (Text and Shapes)**:
+    - **Triangle**:
+        - Object: `Polygon`
+        - Parameters: Vertices calculated to ensure the triangle fits within the safe margins, e.g., `Polygon([-1, 0, 0], [1, 0, 0], [0, 1, 0])`.
+    - **Arrows**:
+        - Object: `Arrow`
+        - Parameters: Each arrow will have a `stroke_width=3`, and size adjustments will be made to ensure they are clearly visible and fit within the layout.
+    - **Labels**:
+        - Objects: `MathTex`
+        - Parameters: 
+            - For angles: `MathTex(r"\angle A")`, `MathTex(r"\angle B")`, `MathTex(r"\angle C")` with font size 24.
+            - For sides: `MathTex(r"a")`, `MathTex(r"b")`, `MathTex(r"c")` with font size 24.
+    - **Annotation**:
+        - Object: `MathTex`
+        - Parameters: `MathTex(r"\text{Larger angles correspond to longer sides}")` with font size 24, placed above the triangle.
+    
+2. **VGroup Structure & Hierarchy**:
+    - Grouping:
+        - Triangle Group: `triangle_group = VGroup(triangle)`
+        - Arrow Group: `arrow_group = VGroup(arrow_A, arrow_B, arrow_C)`
+        - Label Group: `label_group = VGroup(angle_A_label, side_a_label, angle_B_label, side_b_label, angle_C_label, side_c_label)`
+        - Annotation Group: `annotation_group = VGroup(annotation)`
+
+3. **Spatial Positioning Strategy**:
+    - **Triangle Positioning**:
+        - Reference: ORIGIN, `buff=0.5`
+    - **Arrows**:
+        - Arrow from Angle A: `arrow_A.next_to(angle_A, UP, buff=0.3)`
+        - Arrow from Angle B: `arrow_B.next_to(angle_B, UP, buff=0.3)`
+        - Arrow from Angle C: `arrow_C.next_to(angle_C, UP, buff=0.3)`
+    - **Labels**:
+        - Position Angle A Label: `angle_A_label.next_to(angle_A, LEFT, buff=0.3)`
+        - Position Side a Label: `side_a_label.next_to(side_a, DOWN, buff=0.3)`
+        - Repeat for angles B and C, ensuring spacing and alignment with triangle edges.
+    - **Annotation Positioning**:
+        - Place annotation above triangle: `annotation.move_to(UP * 2 + ORIGIN)`, ensuring at least `0.3` units from the triangle.
+
+4. **Animation Methods & Object Lifecycle Management**:
+    - **Animation Sequence**:
+        - Create Triangle: `self.play(Create(triangle), run_time=1)`
+        - Wait for observation: `self.wait(1)`
+        - Create Arrows: `self.play(Create(arrow_A), run_time=0.5)` and repeat for remaining arrows with appropriate waits.
+        - Write Labels: `self.play(Write(angle_A_label), run_time=0.5)` and repeat for remaining labels.
+        - Wait for understanding: `self.wait(1)`
+        - Emphasize Relationships: `self.play(Circumscribe(arrow_group, run_time=1))`
+        - Fade in annotation: `self.play(FadeIn(annotation))`
+        - Wait for reflection: `self.wait(2)`
+        - Final Transition: `self.play(FadeOut(VGroup(triangle_group, arrow_group, label_group, annotation_group)), run_time=1)`
+
+5. **Code Structure & Reusability**:
+    - Create functions for common tasks, e.g., `def create_triangle()`, `def create_arrow()`, `def create_label()`.
+    - Organize code into sections:
+        - Dependencies
+        - Object Definitions
+        - Layout Stages
+        - Construct Method
+    - Include inline comments explaining choices, e.g., `# Position angle A label next to the angle`.
+
+***Mandatory Safety Checks***:
+    - **Safe Area Enforcement**: All objects, including text bounding boxes, must remain within 0.5 unit margins.
+    - **Minimum Spacing Validation**: Confirm a minimum of 0.3 units spacing between every pair of objects.
+    - **Transition Buffers**: Use explicit `Wait()` calls to separate animation steps and sub-scenes.
+</SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+
+<SCENE_ANIMATION_NARRATION_PLAN>
+
+[ANIMATION_STRATEGY]
+1. **Pedagogical Animation Plan:** 
+    - **Parent VGroup transitions:**
+        - Since this scene primarily involves individual elements rather than VGroups, no parent VGroup transitions are needed. However, the overall grouping of arrows and labels will be managed for spatial organization.
+    
+    - **Element animations within VGroups and for individual Mobjects:**
+        - **Triangle Creation:**
+            - **Animation Type:** `Create`
+            - **Target Object:** `triangle`
+            - **Run_time:** `1`
+            - **Pedagogical Purpose:** Initiating the scene with the triangle visually establishes the subject matter. This foundation is crucial for viewers to focus on the relationships about to be introduced.
+
+        - **Arrow Creation:**
+            - **Animation Type:** `Create`
+            - **Target Objects:** `arrow_A`, `arrow_B`, `arrow_C`
+            - **Run_time:** `0.5` for each arrow
+            - **Pedagogical Purpose:** The sequential appearance of arrows from each angle to their opposite sides helps viewers to connect the concept of opposite sides to angles visually. This builds anticipation for the relationships being established.
+
+        - **Label Creation:**
+            - **Animation Type:** `Write`
+            - **Target Objects:** `angle_A_label`, `side_a_label`, `angle_B_label`, `side_b_label`, `angle_C_label`, `side_c_label`
+            - **Run_time:** `0.5` for each label
+            - **Pedagogical Purpose:** Writing the labels after the arrows appear solidifies the associations between angles and sides. This step-by-step labeling reinforces learning by allowing viewers to absorb one piece of information at a time.
+
+        - **Emphasizing Relationships:**
+            - **Animation Type:** `Circumscribe`
+            - **Target Object:** `arrow_group`
+            - **Run_time:** `1`
+            - **Pedagogical Purpose:** Highlighting the arrows visually draws attention to the crucial concept of relationships, thereby enhancing retention of the idea that angles and sides are fundamentally connected.
+
+        - **Annotation Appearance:**
+            - **Animation Type:** `FadeIn`
+            - **Target Object:** `annotation`
+            - **Run_time:** `1`
+            - **Pedagogical Purpose:** This annotation reinforces the key takeaway that larger angles correspond to longer sides. Placing this at the end of the scene ensures that viewers leave with a clear understanding of the core concept.
+
+    - **Coordinate element animations with VGroup transitions:** 
+        - While there are no VGroups requiring transitions, the sequence of animations is designed to create a logical flow. The arrows build upon the triangle, the labels build upon the arrows, and the emphasis on relationships concludes with the annotation, guiding the viewer's understanding sequentially.
+
+2. **Scene Flow - Pedagogical Pacing and Clarity:**
+    - **Overall animation sequence, spatial progression for learning:**
+        - The scene begins with the triangle introduction, followed by arrows pointing to the sides, then the appearance of labels, and finally the annotation that highlights the relationships. 
+        - Each step builds on the previous one, ensuring that viewers can follow along without being overwhelmed by information. This spatial progression is crucial for understanding the Law of Sines.
+
+    - **Transition buffers for pedagogical pauses:**
+        - After the triangle is created, a `Wait(1)` allows viewers to absorb the visual before introducing arrows.
+        - After creating all arrows, a `Wait(1)` gives viewers time to acknowledge these connections before labels appear.
+        - Finally, after all labels are written, a `Wait(1)` allows for processing before emphasizing the relationships with `Circumscribe`.
+        - Each wait serves to provide cognitive processing time, ensuring viewers are not rushed through the material.
+
+    - **Coordinate animation timing with narration for engagement and comprehension:**
+        - The timing of animations is closely aligned with the narration. For example, the arrows appear as the narrator discusses the relationship between angles and sides, ensuring that viewers see the visual representation of the concepts being explained in real time.
+        - The wait times correspond with pauses in the narration, allowing the audience to digest the information before moving on. This synchronization creates a cohesive learning experience that reinforces understanding.
+
+[NARRATION]
+- **Pedagogical Narration Script:**
+    - "Building on what we saw in the previous part, let’s explore the relationship between angles and sides in a triangle." *(Triangle appears)* "Here we have a triangle with three angles." *(Wait 1 second)* "Now, notice how each angle has a corresponding opposite side." *(Arrows appear sequentially)*
+    
+    - "This is important because the size of an angle directly relates to the length of its opposite side. Let's illustrate this." *(Create arrows)* "For example, as we create an arrow from angle A to side a, we can see this relationship clearly." *(Wait 1 second)* "Next, we do the same for angle B and side b, and then for angle C and side c." *(Repeat for all arrows, wait for 1 second)*
+
+    - "Now, let's label each angle and its opposite side." *(Labels appear sequentially)* "We have angle A, side a; angle B, side b; and angle C, side c." *(Wait 1 second)* "Each label helps us remember which side belongs to which angle." *(Wait for 1 second)*
+
+    - "It's crucial to understand that larger angles correspond to longer sides." *(Circumscribe arrows)* "This concept is foundational in trigonometry, especially in our upcoming discussion of the Law of Sines." *(Annotation appears)* "In fact, this leads us to a critical understanding: larger angles indeed correspond to longer sides." *(Wait 2 seconds)*
+
+    - "With this knowledge, we are now prepared to dive deeper into the Law of Sines." *(Fade out all elements to transition smoothly to the next scene)*
+
+- **Narration Sync - Pedagogical Alignment:**
+    - The narration is synchronized with the animations such that when the triangle is introduced, the narrator sets the context. As arrows animate, the narration explains their purpose, reinforcing the connections visually and verbally.
+    - Each wait corresponds with a pause in the narration, allowing learners to process what they have just seen and heard. This thoughtful pacing ensures that viewers are not merely passive observers but are actively engaging with the content, making it more likely they will retain the information presented.
+
+</SCENE_ANIMATION_NARRATION_PLAN>
+

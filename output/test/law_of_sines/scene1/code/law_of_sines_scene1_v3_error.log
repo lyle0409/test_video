@@ -1,0 +1,74 @@
+
+Error in attempt 0:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\TGDD\.conda\envs\tea\Scripts\manim.exe\__main__.py", line 10, in <module>
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 1161, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 1082, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\manim\cli\render\commands.py", line 116, in render
+    for SceneClass in scene_classes_from_file(file):
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\manim\utils\module_ops.py", line 131, in scene_classes_from_file
+    module = get_module(file_path)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\manim\utils\module_ops.py", line 54, in get_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "D:\TheoremExplainAgent\output\test\law_of_sines\scene1\code\law_of_sines_scene1_v3.py", line 45
+    text="Now, let\ufffds explore another example applying the Law of Sines in Scene 6."
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: (unicode error) 'utf-8' codec can't decode byte 0x92 in position 8: invalid start byte
+
+
+Error in attempt 0:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\TGDD\.conda\envs\tea\Scripts\manim.exe\__main__.py", line 10, in <module>
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 1161, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 1082, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\click\core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\manim\cli\render\commands.py", line 116, in render
+    for SceneClass in scene_classes_from_file(file):
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\manim\utils\module_ops.py", line 131, in scene_classes_from_file
+    module = get_module(file_path)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\manim\utils\module_ops.py", line 54, in get_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "D:\TheoremExplainAgent\output\test\law_of_sines\scene1\code\law_of_sines_scene1_v3.py", line 3, in <module>
+    from manim_voiceover import VoiceoverScene, RecorderService  # Corrected import for RecorderService
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ImportError: cannot import name 'RecorderService' from 'manim_voiceover' (C:\Users\TGDD\.conda\envs\tea\Lib\site-packages\manim_voiceover\__init__.py)
+

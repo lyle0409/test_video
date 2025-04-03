@@ -1,0 +1,66 @@
+<SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+0. **Dependencies**:
+    - **Manim API Version**: Target the latest stable Manim release (v0.15.1).
+    - **Allowed Imports**: `from manim import *` (including `Polygon`, `MathTex`, `Line`, `VGroup`, etc.), `numpy`.
+
+1. **Manim Object Selection & Configuration (Text and Shapes)**:
+    - **Triangles**:
+        - First Triangle: `Polygon` with vertices at `(-2, 0, 0)`, `(-2, 2, 0)`, `(-1, 0, 0)`.
+        - Second Triangle: `Polygon` with vertices at `(0, 0, 0)`, `(0, 2, 0)`, `(1, 0, 0)`.
+    - **Dashed Line**:
+        - `Line` from `(-2, 2, 0)` to `(-2, 0, 0)` with `dashed=True`.
+    - **Math Text**:
+        - Angles: 
+            - `MathTex(r"\angle A", color=YELLOW)` for the left triangle.
+            - `MathTex(r"\angle B", color=YELLOW)` for the right triangle.
+        - Law of Sines: `MathTex(r"\frac{a}{\sin A} = \frac{b}{\sin B}", color=BLUE)`.
+    - **Text Considerations**:
+        - All `MathTex` objects are used for mathematical expressions.
+        - Font sizes: 
+            - Angles: 24.
+            - Law of Sines: 24.
+    - Confirm all objects begin within the safe area (0.5 units from all edges) and maintain at least 0.3 units spacing to avoid overlaps.
+
+2. **VGroup Structure & Hierarchy**:
+    - Grouping:
+        - `triangle_group = VGroup(first_triangle, second_triangle)`: Holds both triangles.
+        - `angle_group = VGroup(angle_A, angle_B)`: Holds angle annotations.
+        - `law_group = VGroup(law_of_sines)`: Holds the Law of Sines expression.
+    - Ensure internal spacing of `0.3` units within `VGroups`.
+
+3. **Spatial Positioning Strategy**:
+    - **Triangles**:
+        - Position first triangle at `(-2, 0, 0)`, second triangle at `(0, 0, 0)` with a `buff` of `0.5` units.
+    - **Dashed Line**:
+        - Positioned at `(-2, 2, 0)` to `(-2, 0, 0)` with a `buff` of `0.3`.
+    - **Angles**:
+        - `angle_A.next_to(first_triangle, UP, buff=0.3)`: Above the left triangle.
+        - `angle_B.next_to(second_triangle, UP, buff=0.3)`: Above the right triangle.
+    - **Law of Sines**:
+        - `law_of_sines.move_to(ORIGIN + DOWN*2)`: Centered at the bottom, maintaining `0.3` unit spacing from triangles and scene edges.
+    - All objects are checked to ensure they remain within the defined margins and avoid bounding box overflow.
+
+4. **Animation Methods & Object Lifecycle Management**:
+    - **Animation Sequence**:
+        - `self.play(Create(triangle_group), run_time=2)`: Create both triangles.
+        - `self.wait(1)`: Allow viewers to absorb the triangles.
+        - `self.play(Create(dashed_line), run_time=1)`: Introduce the dashed line.
+        - `self.wait(1)`: Allow viewers to absorb the height representation.
+        - `self.play(Write(angle_group), run_time=1)`: Display angles.
+        - `self.wait(1)`: Allow viewers to absorb the angles.
+        - `self.play(Write(law_group), run_time=1.5)`: Show Law of Sines.
+        - `self.wait(1)`: Final pause for viewers to absorb the concept.
+    - Ensure every object's appearance and removal is managed to prevent clutter and maintain scene clarity.
+
+5. **Code Structure & Reusability**:
+    - Modular functions can be created for triangles and labels:
+        - `def create_triangle(vertices): return Polygon(*vertices)`.
+        - `def create_angle_label(text, triangle, direction): ...`.
+    - Organize the overall code structure into logical sections: dependencies, object definitions, individual layout stages, and the main `construct` method.
+    - Include inline comments to document the rationale for configuration choices, referencing the Manim Documentation.
+
+***Mandatory Safety Checks***:
+    - **Safe Area Enforcement**: All objects, including text bounding boxes, must remain within 0.5 unit margins.
+    - **Minimum Spacing Validation**: Confirm a minimum of 0.3 units spacing between every pair of objects.
+    - **Transition Buffers**: Use explicit `Wait()` calls to separate animation steps and sub-scenes.
+</SCENE_TECHNICAL_IMPLEMENTATION_PLAN>

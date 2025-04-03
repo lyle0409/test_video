@@ -1,0 +1,20 @@
+1
+00:00:00,000 --> 00:00:03,836
+Now, let's explore an example problem using the Law of Sines.
+
+2
+00:00:04,000 --> 00:00:07,716
+Here, we have a triangle with angles A and B, and side a.
+
+3
+00:00:07,800 --> 00:00:10,940
+To find angle C, we can apply the Law of Sines.
+
+4
+00:00:11,033 --> 00:00:14,125
+Let's rearrange the formula to solve for angle C.
+
+5
+00:00:14,216 --> 00:00:17,500
+Now, substituting the known values into this formula.
+

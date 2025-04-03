@@ -1,0 +1,75 @@
+<SCENE_ANIMATION_NARRATION_PLAN>
+
+[ANIMATION_STRATEGY]
+1. **Pedagogical Animation Plan:** Provide a detailed plan for all animations in the scene, explicitly focusing on how each animation contributes to **teaching the core concepts** of this scene.
+    - **Parent VGroup transitions:**
+        - **Triangle Group Creation:** `triangle_group` composed of the triangle and its labels will be animated together for coherence. The animation will be a `Create` animation to emphasize the triangle's formation and its properties. The run_time will be set to `2 seconds` to give viewers time to appreciate the shape being formed.
+        - **Pedagogical Rationale:** Grouping these elements helps viewers understand that the labels are directly related to the triangle, reinforcing the connection between the sides and their respective names.
+
+    - **Element animations within VGroups and for individual Mobjects:**
+        - **Triangle Animation:** 
+            - Animation Type: `Create`
+            - Target Object: `triangle`
+            - Run Time: `2 seconds`
+            - **Pedagogical Purpose:** This animation introduces the triangle visually, setting the stage for the discussion about its properties. 
+            
+        - **Label Animations:**
+            - Animation Type: `Write`
+            - Target Object: `A_label`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** By writing the label, it emphasizes the importance of the side it represents as the viewer is guided to associate the label with the visual element.
+            
+            - Animation Type: `Write`
+            - Target Object: `B_label`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** Similar to the first label, this reinforces the concept of naming sides in a triangle and their relationships.
+            
+            - Animation Type: `Write`
+            - Target Object: `C_label`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** Completing the naming reinforces the understanding of the triangle structure, preparing the viewer for the subsequent explanation of triangle properties.
+
+        - **Properties Text Animation:**
+            - Animation Type: `FadeIn`
+            - Target Object: `text`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** This animation introduces the educational content about triangles having three sides and three angles, providing a textual summary to reinforce the visual representation.
+        
+        - **Text Fade Out:**
+            - Animation Type: `FadeOut`
+            - Target Object: `text`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** This clears the scene for the next segment, ensuring that viewers focus on the upcoming information without visual clutter.
+
+    - **Coordinate element animations with VGroup transitions:**
+        - The `Create(triangle_group)` will initiate the scene, followed by the sequential `Write` animations for labels A, B, and C. This creates a logical progression where the viewers first see the triangle, then the labels, leading to a comprehensive understanding of the triangle's properties.
+        - The `FadeIn(text)` will follow after all labels have been written, allowing the viewer to absorb the relationship between the visual and textual information.
+
+2. **Scene Flow - Pedagogical Pacing and Clarity:** Detail the overall flow of the scene, emphasizing pedagogical effectiveness.
+    - **Overall animation sequence, spatial progression for learning:**
+        - **Step 1: Triangle Creation** (Triangle is drawn): The triangle is created at the center of the scene to immediately draw attention to its geometric properties. 
+        - **Step 2: Labeling of the Triangle** (Labels A, B, and C appear sequentially): Each label is introduced one at a time, allowing the viewer to focus on one aspect of the triangle before moving on to the next.
+        - **Step 3: Properties Introduction** (Text about triangle properties fades in): The properties of triangles are summarized below the triangle, reinforcing the visual representation with textual information.
+
+    - **Transition buffers for pedagogical pauses:**
+        - After the triangle is created, a `Wait(0.5)` will allow viewers to process the visual before labels appear.
+        - After each label is written, a `Wait(0.5)` will give viewers a moment to absorb the information before the next element appears.
+        - After displaying the properties text, a `Wait(2)` will be provided to allow viewers to read and understand the statement fully before moving on to the next concept.
+  
+    - **Coordinate animation timing with narration for engagement and comprehension:**
+        - Timing of animations will be synchronized with the narration so that when the triangle appears, the narrator introduces the concept of triangles. The narrator will pause slightly as each label appears, reinforcing the connection between the visual and the spoken word. 
+        - The properties text will fade in as the narrator discusses triangle characteristics, ensuring that viewers see the text as they hear it, enhancing retention and understanding.
+
+[NARRATION]
+- **Pedagogical Narration Script:**
+    - "Welcome! In this scene, we will explore one of the most fundamental shapes in geometry: the triangle. [Triangle appears] A triangle is a polygon with three edges and three vertices, and it's the simplest form of a polygon. [Pause as triangle draws] 
+    - Let's take a closer look at this triangle. [Labels A, B, and C appear] We label the sides of the triangle as A, B, and C. Notice how each label corresponds to a side of the triangle, helping us refer to them easily. [Pause for labels] 
+    - But what makes a triangle unique? [Triangle properties text fades in] Triangles have three sides and three angles. Understanding the relationships between these sides and angles is crucial for solving problems in geometry and trigonometry. [Pause for text]
+    - As we move forward, we will see how these properties lead us to important rules like the Law of Sines. [Pause for 2 seconds, then fade out text] Now, let’s dive deeper into these relationships in the following scenes."
+
+- **Narration Sync - Pedagogical Alignment:**
+    - The timing of the narration will be carefully aligned with the animations. For instance, as the triangle appears, the narrator will introduce the concept of triangles, ensuring that viewers connect the spoken phrase with the visual representation.
+    - When each label appears, the narration will pause slightly, allowing viewers to process and connect the label with the corresponding side of the triangle.
+    - The properties text will be read aloud as it fades in, ensuring that viewers see and hear the information simultaneously, reinforcing learning through dual-channel processing.
+
+</SCENE_ANIMATION_NARRATION_PLAN>

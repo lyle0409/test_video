@@ -1,0 +1,95 @@
+```python
+from manim import *
+from manim_voiceover import VoiceoverScene
+from src.utils.kokoro_voiceover import KokoroService  # You MUST import like this as this is our custom voiceover service.
+
+class Scene5_Helper:
+    def __init__(self, scene):
+        self.scene = scene
+
+    def create_triangle(self):
+        # Create a triangle centered at the origin
+        triangle = Polygon(ORIGIN + LEFT, ORIGIN + RIGHT, ORIGIN + UP, color=WHITE)
+        return triangle
+
+    def create_angle_labels(self, triangle):
+        # Create labels for the angles A, B, and C
+        angle_A_label = MathTex("A", font_size=24).next_to(triangle.get_vertices()[2], UP, buff=0.3)
+        angle_B_label = MathTex("B", font_size=24).next_to(triangle.get_vertices()[1], LEFT, buff=0.3)
+        angle_C_label = MathTex("C", font_size=24).next_to(triangle.get_vertices()[0], DOWN, buff=0.3)
+        return angle_A_label, angle_B_label, angle_C_label
+
+    def create_known_values(self):
+        # Create known values text
+        known_values = MathTex(r"A = 30^\circ, B = 45^\circ, a = 10", font_size=24)
+        return known_values
+
+    def create_law_of_sines_formula(self):
+        # Create Law of Sines formula
+        law_of_sines = MathTex(r"\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}", font_size=24)
+        return law_of_sines
+
+    def create_sine_c_formula(self):
+        # Create sine C formula
+        sin_C_formula = MathTex(r"\sin C = \frac{c \cdot \sin A}{a}", font_size=24)
+        return sin_C_formula
+
+    def create_angle_c_calculation(self):
+        # Create calculation for angle C
+        angle_C_calculation = MathTex(r"C = \arcsin\left(\frac{10 \cdot \sin(30^\circ)}{10}\right)", font_size=24)
+        return angle_C_calculation
+
+
+class Scene5(VoiceoverScene):
+    def construct(self):
+        # Initialize speech service
+        self.set_speech_service(KokoroService())
+
+        # Instantiate helper class
+        helper = Scene5_Helper(self)
+
+        # --- Stage 1: Create Triangle and Labels ---
+        with self.voiceover(text="Now, let's explore an example problem using the Law of Sines.") as tracker:  
+            triangle = helper.create_triangle()
+            angle_A_label, angle_B_label, angle_C_label = helper.create_angle_labels(triangle)
+
+            self.play(Create(triangle), run_time=2)
+            self.play(Write(angle_A_label), Write(angle_B_label), Write(angle_C_label), run_time=1)
+            self.wait(1)  # Transition buffer
+
+        # --- Stage 2: Show Known Values ---
+        with self.voiceover(text="Here, we have a triangle with angles A and B, and side a.") as tracker:  
+            known_values = helper.create_known_values()
+            known_values.next_to(triangle, RIGHT, buff=0.3)  # Position known values
+
+            self.play(Write(known_values), run_time=1)
+            self.wait(1)  # Transition buffer
+
+        # --- Stage 3: Introduce Law of Sines ---
+        with self.voiceover(text="To find angle C, we can apply the Law of Sines.") as tracker:  
+            law_of_sines = helper.create_law_of_sines_formula()
+            law_of_sines.next_to(triangle, RIGHT, buff=0.3)  # Position formula
+
+            self.play(Write(law_of_sines), run_time=1)
+            self.wait(1)  # Transition buffer
+
+        # --- Stage 4: Calculate Sine C ---
+        with self.voiceover(text="Let's rearrange the formula to solve for angle C.") as tracker:  
+            sin_C_formula = helper.create_sine_c_formula()
+            sin_C_formula.next_to(law_of_sines, DOWN, buff=0.3)  # Position sine C formula
+
+            self.play(Write(sin_C_formula), run_time=1)
+            self.wait(1)  # Transition buffer
+
+        # --- Stage 5: Calculate Angle C ---
+        with self.voiceover(text="Now, substituting the known values into this formula.") as tracker:  
+            angle_C_calculation = helper.create_angle_c_calculation()
+            angle_C_calculation.next_to(sin_C_formula, DOWN, buff=0.3)  # Position angle C calculation
+
+            self.play(Write(angle_C_calculation), run_time=1)
+            self.wait(2)  # Wait for viewers to absorb the final calculation
+
+        self.wait(1)  # Scene end transition buffer
+``` 
+
+This implementation follows the outlined specifications, ensuring proper spatial constraints and modularity through helper functions. Each part of the scene is clearly defined, with appropriate comments and synchronized voiceover narration.

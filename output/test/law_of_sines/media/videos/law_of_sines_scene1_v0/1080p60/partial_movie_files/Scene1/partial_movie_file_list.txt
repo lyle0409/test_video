@@ -1,0 +1,9 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/TheoremExplainAgent/output/test/law_of_sines/media/videos/law_of_sines_scene1_v0/1080p60/partial_movie_files/Scene1/3529212410_3512410758_223132457.mp4'
+file 'file:D:/TheoremExplainAgent/output/test/law_of_sines/media/videos/law_of_sines_scene1_v0/1080p60/partial_movie_files/Scene1/3040924799_3649372508_2004028960.mp4'
+file 'file:D:/TheoremExplainAgent/output/test/law_of_sines/media/videos/law_of_sines_scene1_v0/1080p60/partial_movie_files/Scene1/3040924799_3076118026_1775962614.mp4'
+file 'file:D:/TheoremExplainAgent/output/test/law_of_sines/media/videos/law_of_sines_scene1_v0/1080p60/partial_movie_files/Scene1/3040924799_2268332985_3239613900.mp4'
+file 'file:D:/TheoremExplainAgent/output/test/law_of_sines/media/videos/law_of_sines_scene1_v0/1080p60/partial_movie_files/Scene1/3040924799_3355598241_2744812358.mp4'
+file 'file:D:/TheoremExplainAgent/output/test/law_of_sines/media/videos/law_of_sines_scene1_v0/1080p60/partial_movie_files/Scene1/3040924799_634017564_941024882.mp4'
+file 'file:D:/TheoremExplainAgent/output/test/law_of_sines/media/videos/law_of_sines_scene1_v0/1080p60/partial_movie_files/Scene1/3040924799_2649218279_3797680258.mp4'
+file 'file:D:/TheoremExplainAgent/output/test/law_of_sines/media/videos/law_of_sines_scene1_v0/1080p60/partial_movie_files/Scene1/3040924799_2268332985_566581471.mp4'

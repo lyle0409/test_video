@@ -1,0 +1,28 @@
+1
+00:00:00,000 --> 00:00:02,483
+Now, let's explore how we can derive the Law
+
+2
+00:00:02,583 --> 00:00:05,420
+of Sines from the properties of similar triangles.
+
+3
+00:00:05,516 --> 00:00:10,478
+Here we have two right-angled triangles, Triangle A and Triangle B,
+
+4
+00:00:10,578 --> 00:00:14,557
+which share a common angle, denoted as \( \angle A \).
+
+5
+00:00:14,657 --> 00:00:18,712
+Notice how these triangles are positioned side by side.
+
+6
+00:00:18,800 --> 00:00:25,488
+Finally, we can express this relationship mathematically with the Law
+
+7
+00:00:25,588 --> 00:00:30,604
+of Sines: \( \frac{a}{\sin A} = \frac{b}{\sin B} \).
+

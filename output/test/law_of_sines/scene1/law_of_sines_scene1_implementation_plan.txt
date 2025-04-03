@@ -1,0 +1,225 @@
+# Scene 1 Implementation Plan
+
+<SCENE_VISION_STORYBOARD_PLAN>
+[SCENE_VISION]
+1.  **Scene Overview**:
+    - This scene introduces the basic properties of triangles, emphasizing their sides and angles, which is crucial for understanding the Law of Sines. The key takeaway is to establish the foundational knowledge of triangles that will lead into the exploration of relationships between their sides and angles.
+    - **Visual learning objectives for viewers:** Visualize the triangle using the `Polygon` class and label its sides with `MathTex` for clear mathematical representation. Each side will be labeled A, B, and C, ensuring clarity through appropriate spacing.
+    - The visuals will support learning by providing a direct representation of a triangle, making the mathematical relationships more tangible. Using `VGroup` to group the triangle and its labels will facilitate smoother animations and spatial control, ensuring a minimum spacing of 0.3 units between the triangle and labels, as well as among the labels themselves.
+    - Key concepts include the properties of triangles (three sides and three angles) and their importance in trigonometry. The triangle will be prominently displayed, with labels clearly positioned to enhance understanding without cluttering the scene.
+
+[STORYBOARD]
+1.  **Visual Flow & Pacing (Manim Animation Sequence)**:
+    - **Sub-scene 1: Triangle Creation**
+        - **Visual Element:** A right-angled triangle created using the `Polygon` class.
+        - **Animation Sequence:** 
+            - Create the triangle with vertices at `[-2, -1, 0], [2, -1, 0], [0, 2, 0]` using `Polygon`. 
+            - Animation: `Create(triangle, run_time=2)`.
+            - Position the triangle centrally in the scene, ensuring it is within the safe area margins.
+    
+    - **Sub-scene 2: Labeling the Triangle**
+        - **Visual Element:** Labels for the sides of the triangle.
+        - **Animation Sequence:**
+            - Create labels using `MathTex` for each side: `A`, `B`, and `C`. Position these labels:
+                - Label A: `A` positioned at the midpoint of the base edge, using `.next_to(triangle.get_bottom(), UP + LEFT * 0.5, buff=0.3)`.
+                - Label B: `B` positioned at the right edge, using `.next_to(triangle.get_right(), UP + RIGHT * 0.3, buff=0.3)`.
+                - Label C: `C` positioned at the apex, using `.next_to(triangle.get_top(), UP + RIGHT * 0.5, buff=0.3)`.
+            - Animation: `Write(A_label, run_time=1)`, `Write(B_label, run_time=1)`, `Write(C_label, run_time=1)`.
+    
+    - **Sub-scene 3: Emphasizing Triangle Properties**
+        - **Visual Element:** Text outlining the properties of triangles.
+        - **Animation Sequence:**
+            - Use `Tex` to display the text "Triangles have three sides and three angles." 
+            - Position this text below the triangle using `.next_to(triangle, DOWN, buff=0.5)`.
+            - Animation: `FadeIn(text, run_time=1)`.
+            - **Wait** for 2 seconds to allow viewers to absorb the information.
+            - **FadeOut** the text for clarity in transitioning.
+    
+    - **Scene Pacing:** 
+        - Transition smoothly with `Wait(0.5)` before moving to the next sub-scene. Allow for visual clarity between animations and presentations.
+        - Ensure that all elements maintain a minimum spacing of 0.3 units and adhere to the defined safe area margins throughout the scene.
+
+</SCENE_VISION_STORYBOARD_PLAN>
+
+<SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+0. **Dependencies**:
+    - **Manim API Version**: Target the latest stable Manim release, using only documented API elements.
+    - **Allowed Imports**: `from manim import *` (this includes all necessary classes and functions).
+
+1. **Manim Object Selection & Configuration (Text and Shapes)**:
+    - **Triangle**: 
+        - Use `Polygon` to create the triangle vertices at `[-2, -1, 0], [2, -1, 0], [0, 2, 0]`.
+        - **Color**: Default color will be set to `WHITE`.
+    - **Labels**:
+        - **Label A**: `MathTex("A", font_size=24)`.
+        - **Label B**: `MathTex("B", font_size=24)`.
+        - **Label C**: `MathTex("C", font_size=24)`.
+    - **Properties Text**:
+        - Use `Tex("Triangles have three sides and three angles.", font_size=24)` for explanatory text.
+    - All objects will be positioned ensuring they are within the safe margins (0.5 units from edges) and maintaining at least 0.3 units spacing.
+
+2. **VGroup Structure & Hierarchy**:
+    - Create a `VGroup` for the triangle and its labels:
+        - `triangle_group = VGroup(triangle, A_label, B_label, C_label)`.
+    - Group the properties text separately:
+        - `properties_group = VGroup(text)`.
+    - This structure allows for efficient animation and management of related elements.
+
+3. **Spatial Positioning Strategy**:
+    - **Triangle**: Centered using `ORIGIN`.
+    - **Label A**: Positioned at the midpoint of the base edge:
+        ```python
+        A_label.next_to(triangle.get_bottom(), UP + LEFT * 0.5, buff=0.3)
+        ```
+    - **Label B**: Positioned at the right edge:
+        ```python
+        B_label.next_to(triangle.get_right(), UP + RIGHT * 0.3, buff=0.3)
+        ```
+    - **Label C**: Positioned at the apex:
+        ```python
+        C_label.next_to(triangle.get_top(), UP + RIGHT * 0.5, buff=0.3)
+        ```
+    - **Properties Text**: Positioned below the triangle:
+        ```python
+        text.next_to(triangle, DOWN, buff=0.5)
+        ```
+    - All positioning must respect the safe area margins and spacing requirements.
+
+4. **Animation Methods & Object Lifecycle Management**:
+    - **Triangle Animation**: 
+        - `self.play(Create(triangle_group, run_time=2))`.
+    - **Label Animations**:
+        - `self.play(Write(A_label, run_time=1))`.
+        - `self.play(Write(B_label, run_time=1))`.
+        - `self.play(Write(C_label, run_time=1))`.
+    - **Properties Text Animation**:
+        - `self.play(FadeIn(text, run_time=1))`.
+        - `self.wait(2)` to allow viewers to absorb the information.
+        - `self.play(FadeOut(text))`.
+    - **Transition Buffers**: Ensure sufficient wait times between animations to maintain clarity:
+        - `self.wait(0.5)` before moving to the next step.
+
+5. **Code Structure & Reusability**:
+    - The overall code structure will be organized into the following sections:
+        - Dependencies
+        - Object Definitions
+        - Layout Stages
+        - Main `construct` method.
+    - Inline comments will document configuration choices and rationale.
+
+```python
+class IntroductionToTriangles(Scene):
+    def construct(self):
+        # Triangle Creation
+        triangle = Polygon([-2, -1, 0], [2, -1, 0], [0, 2, 0], color=WHITE)
+        A_label = MathTex("A", font_size=24)
+        B_label = MathTex("B", font_size=24)
+        C_label = MathTex("C", font_size=24)
+
+        # Positioning Labels
+        A_label.next_to(triangle.get_bottom(), UP + LEFT * 0.5, buff=0.3)
+        B_label.next_to(triangle.get_right(), UP + RIGHT * 0.3, buff=0.3)
+        C_label.next_to(triangle.get_top(), UP + RIGHT * 0.5, buff=0.3)
+
+        # Group Triangle and Labels
+        triangle_group = VGroup(triangle, A_label, B_label, C_label)
+
+        # Properties Text
+        text = Tex("Triangles have three sides and three angles.", font_size=24)
+        text.next_to(triangle, DOWN, buff=0.5)
+
+        # Animation Sequence
+        self.play(Create(triangle_group, run_time=2))
+        self.play(Write(A_label, run_time=1))
+        self.play(Write(B_label, run_time=1))
+        self.play(Write(C_label, run_time=1))
+        self.play(FadeIn(text, run_time=1))
+        self.wait(2)
+        self.play(FadeOut(text))
+
+        # Exiting the scene
+        self.wait(0.5)
+```
+
+***Mandatory Safety Checks***:
+    - **Safe Area Enforcement**: All objects, including text bounding boxes, must remain within 0.5 unit margins.
+    - **Minimum Spacing Validation**: Confirm a minimum of 0.3 units spacing between every pair of objects.
+    - **Transition Buffers**: Use explicit `Wait()` calls to separate animation steps and sub-scenes.
+</SCENE_TECHNICAL_IMPLEMENTATION_PLAN>
+
+<SCENE_ANIMATION_NARRATION_PLAN>
+
+[ANIMATION_STRATEGY]
+1. **Pedagogical Animation Plan:** Provide a detailed plan for all animations in the scene, explicitly focusing on how each animation contributes to **teaching the core concepts** of this scene.
+    - **Parent VGroup transitions:**
+        - **Triangle Group Creation:** `triangle_group` composed of the triangle and its labels will be animated together for coherence. The animation will be a `Create` animation to emphasize the triangle's formation and its properties. The run_time will be set to `2 seconds` to give viewers time to appreciate the shape being formed.
+        - **Pedagogical Rationale:** Grouping these elements helps viewers understand that the labels are directly related to the triangle, reinforcing the connection between the sides and their respective names.
+
+    - **Element animations within VGroups and for individual Mobjects:**
+        - **Triangle Animation:** 
+            - Animation Type: `Create`
+            - Target Object: `triangle`
+            - Run Time: `2 seconds`
+            - **Pedagogical Purpose:** This animation introduces the triangle visually, setting the stage for the discussion about its properties. 
+            
+        - **Label Animations:**
+            - Animation Type: `Write`
+            - Target Object: `A_label`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** By writing the label, it emphasizes the importance of the side it represents as the viewer is guided to associate the label with the visual element.
+            
+            - Animation Type: `Write`
+            - Target Object: `B_label`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** Similar to the first label, this reinforces the concept of naming sides in a triangle and their relationships.
+            
+            - Animation Type: `Write`
+            - Target Object: `C_label`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** Completing the naming reinforces the understanding of the triangle structure, preparing the viewer for the subsequent explanation of triangle properties.
+
+        - **Properties Text Animation:**
+            - Animation Type: `FadeIn`
+            - Target Object: `text`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** This animation introduces the educational content about triangles having three sides and three angles, providing a textual summary to reinforce the visual representation.
+        
+        - **Text Fade Out:**
+            - Animation Type: `FadeOut`
+            - Target Object: `text`
+            - Run Time: `1 second`
+            - **Pedagogical Purpose:** This clears the scene for the next segment, ensuring that viewers focus on the upcoming information without visual clutter.
+
+    - **Coordinate element animations with VGroup transitions:**
+        - The `Create(triangle_group)` will initiate the scene, followed by the sequential `Write` animations for labels A, B, and C. This creates a logical progression where the viewers first see the triangle, then the labels, leading to a comprehensive understanding of the triangle's properties.
+        - The `FadeIn(text)` will follow after all labels have been written, allowing the viewer to absorb the relationship between the visual and textual information.
+
+2. **Scene Flow - Pedagogical Pacing and Clarity:** Detail the overall flow of the scene, emphasizing pedagogical effectiveness.
+    - **Overall animation sequence, spatial progression for learning:**
+        - **Step 1: Triangle Creation** (Triangle is drawn): The triangle is created at the center of the scene to immediately draw attention to its geometric properties. 
+        - **Step 2: Labeling of the Triangle** (Labels A, B, and C appear sequentially): Each label is introduced one at a time, allowing the viewer to focus on one aspect of the triangle before moving on to the next.
+        - **Step 3: Properties Introduction** (Text about triangle properties fades in): The properties of triangles are summarized below the triangle, reinforcing the visual representation with textual information.
+
+    - **Transition buffers for pedagogical pauses:**
+        - After the triangle is created, a `Wait(0.5)` will allow viewers to process the visual before labels appear.
+        - After each label is written, a `Wait(0.5)` will give viewers a moment to absorb the information before the next element appears.
+        - After displaying the properties text, a `Wait(2)` will be provided to allow viewers to read and understand the statement fully before moving on to the next concept.
+  
+    - **Coordinate animation timing with narration for engagement and comprehension:**
+        - Timing of animations will be synchronized with the narration so that when the triangle appears, the narrator introduces the concept of triangles. The narrator will pause slightly as each label appears, reinforcing the connection between the visual and the spoken word. 
+        - The properties text will fade in as the narrator discusses triangle characteristics, ensuring that viewers see the text as they hear it, enhancing retention and understanding.
+
+[NARRATION]
+- **Pedagogical Narration Script:**
+    - "Welcome! In this scene, we will explore one of the most fundamental shapes in geometry: the triangle. [Triangle appears] A triangle is a polygon with three edges and three vertices, and it's the simplest form of a polygon. [Pause as triangle draws] 
+    - Let's take a closer look at this triangle. [Labels A, B, and C appear] We label the sides of the triangle as A, B, and C. Notice how each label corresponds to a side of the triangle, helping us refer to them easily. [Pause for labels] 
+    - But what makes a triangle unique? [Triangle properties text fades in] Triangles have three sides and three angles. Understanding the relationships between these sides and angles is crucial for solving problems in geometry and trigonometry. [Pause for text]
+    - As we move forward, we will see how these properties lead us to important rules like the Law of Sines. [Pause for 2 seconds, then fade out text] Now, let’s dive deeper into these relationships in the following scenes."
+
+- **Narration Sync - Pedagogical Alignment:**
+    - The timing of the narration will be carefully aligned with the animations. For instance, as the triangle appears, the narrator will introduce the concept of triangles, ensuring that viewers connect the spoken phrase with the visual representation.
+    - When each label appears, the narration will pause slightly, allowing viewers to process and connect the label with the corresponding side of the triangle.
+    - The properties text will be read aloud as it fades in, ensuring that viewers see and hear the information simultaneously, reinforcing learning through dual-channel processing.
+
+</SCENE_ANIMATION_NARRATION_PLAN>
+

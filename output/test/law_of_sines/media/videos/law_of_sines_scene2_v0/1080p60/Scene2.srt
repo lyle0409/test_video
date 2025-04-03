@@ -1,0 +1,20 @@
+1
+00:00:00,000 --> 00:00:04,244
+Let's explore the relationship between angles and sides in a triangle.
+
+2
+00:00:04,333 --> 00:00:07,881
+Notice how each angle has a corresponding opposite side.
+
+3
+00:00:07,966 --> 00:00:11,514
+Let's label each angle and its corresponding opposite side.
+
+4
+00:00:11,966 --> 00:00:14,554
+Larger angles correspond to longer sides.
+
+5
+00:00:15,966 --> 00:00:19,130
+This leads us to a critical understanding in trigonometry.
+
